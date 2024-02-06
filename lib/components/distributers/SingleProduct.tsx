@@ -5,12 +5,12 @@ import Image from "next/image"
 /**
  * Types
  */
-import { FormatedProductType } from "@/lib/types/products"
+import type { FormatedProductType } from "@/lib/types/products"
 /**
  * Utils
  */
-import { formatPercentage } from "@/lib/utils/numbers/formatPercentage"
-import { formatPrice } from "@/lib/utils/numbers/formatPrice"
+import formatPercentage from "@/lib/utils/numbers/formatPercentage"
+import formatPrice from "@/lib/utils/numbers/formatPrice"
 /**
  * Props
  */
@@ -18,9 +18,9 @@ type ProductProps = {
   product: FormatedProductType,
 }
 /**
- * Display info about a single product.
+ * Display info about a single distributer's product.
  */
-export default function Product({ product } : ProductProps) {
+export default function SingleProduct({ product } : ProductProps) {
   return (
     <div
       key={product.name}

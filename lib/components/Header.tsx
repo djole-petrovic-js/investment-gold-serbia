@@ -15,6 +15,7 @@ export default function Header() {
 			<div className="flex gap-2">
 				<Link href="/">Distributeri</Link>
 				<Link href="/premium-calculator">Kalkulator Premija</Link>
+				<Link href="/gold-bars">Poluge</Link>
 			</div>
 		</nav>
 	)

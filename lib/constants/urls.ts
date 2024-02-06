@@ -1,13 +1,15 @@
 /**
  * Tavex 
  */
-export const tavexUrl = 'https://tavex.rs/zlato/savremene-investicione-kovanice';
+export const tavexUrl = 'https://tavex.rs/zlato';
 /**
  * GVS Srbija
  */
 export const gvsUrls = {
-  buy: 'https://www.gvs-srbija.rs/kupi/zlatnici.html',
-  sell : 'https://otkup.gvs-srbija.rs/prodaj/zlatnici.html',
+  sellCoins: 'https://www.gvs-srbija.rs/kupi/zlatnici.html',
+  buyCoins : 'https://otkup.gvs-srbija.rs/prodaj/zlatnici.html',
+  sellBars : 'https://www.gvs-srbija.rs/kupi/zlatne-poluge.html',
+  buyBars  : 'https://otkup.gvs-srbija.rs/prodaj/zlatne-poluge.html',
 }
 /**
  * Live price of gold website

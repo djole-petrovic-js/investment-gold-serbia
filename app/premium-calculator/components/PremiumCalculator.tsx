@@ -6,8 +6,8 @@ import { useState } from "react";
 /**
  * Utils
  */
-import { calculatePremium } from "@/lib/utils/numbers/calculatePremium";
-import { formatPercentage } from "@/lib/utils/numbers/formatPercentage";
+import calculatePremium  from "@/lib/utils/numbers/calculatePremium";
+import formatPercentage from "@/lib/utils/numbers/formatPercentage";
 /**
  * Props
  */

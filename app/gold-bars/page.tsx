@@ -19,23 +19,23 @@ import { getSpotPriceInfo } from '@/lib/providers/http'
  * Page metadata
  */
 export const metadata: Metadata = {
-  title: 'IZS - Kovanice',
-  description: 'Investiciono Zlato Srbija - Kovanice',
+  title: 'IZS - Poluge',
+  description: 'Investiciono zlato Srbija - Poluge',
 }
 /**
- * Display all coins from recommended distributers. 
+ * Display all gold bars from recommended distributers.
  */
-export default async function Home() {
+export default async function GoldBars() {
   const { spotPriceInRsd } = await getSpotPriceInfo();
 
   const distributersInstance = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
     spotPriceInRsd: spotPriceInRsd,
-    productTypes: ['COINS'],
+    productTypes: ['BARS'],
   }));
 
   return (
     <main className="bg-black">
-      <h1 className="text-white">Kovanice</h1>
+      <h1 className="text-white">Poluge</h1>
       <DistributersListing distributers={distributersInstance} />
     </main>
   )

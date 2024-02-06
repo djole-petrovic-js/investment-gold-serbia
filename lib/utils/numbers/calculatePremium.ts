@@ -7,7 +7,7 @@
  * 
  * @returns number
  */
-export function calculatePremium(price: number, weightDivider: number, spotPrice: number): number {
+export default function calculatePremium(price: number, weightDivider: number, spotPrice: number): number {
   /**
    * (coin price / troy weight in decimal form) - spot price / spot price
    */

@@ -5,6 +5,6 @@
  * 
  * @returns {String}
  */
-export function formatPercentage(number: number): string {
+export default function formatPercentage(number: number): string {
   return number.toFixed(2) + '%';
 }

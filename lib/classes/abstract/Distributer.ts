@@ -1,8 +1,8 @@
 /**
  * Types
  */
-import { DistributerData } from "@/lib/types/distributerData";
-import { FormatedProductType, ProductType } from "@/lib/types/products";
+import type { DistributerData, DistributerProductsType } from "@/lib/types/distributerData";
+import type { FormatedProductType } from "@/lib/types/products";
 /**
  * Instantiate all Distributers from this class.
  */
@@ -11,39 +11,50 @@ export default abstract class Distributer {
    * @type FormatedProductType[]
    */
   protected fetchedProducts: FormatedProductType[] = [];
+
   protected name: string;
   protected spotPriceInRsd: number;
+  protected productTypes: string[];
 
-  protected products: ProductType[] = [{
-    name : 'Becka filharmonija 1 oz',
-    weightIdentifier : '1',
-    weightDivider : 1 / 1,
-  }, {
-    name : 'Becka filharmonija 1/2 oz',
-    weightIdentifier : '1-2',
-    weightDivider : 1 / 2,
-  }, {
-    name : 'Becka filharmonija 1/4 oz',
-    weightIdentifier : '1-4',
-    weightDivider : 1 / 4,
-  }, {
-    name : 'Becka filharmonija 1/10 oz',
-    weightIdentifier : '1-10',
-    weightDivider : 1 / 10,
-  }, {
-    name : 'Becka filharmonija 1/25 oz',
-    weightIdentifier : '1-25',
-    weightDivider : 1 / 25,
-  }];
+  protected products: DistributerProductsType = {
+    'COINS' : [{
+      name : 'Becka filharmonija 1 oz',
+      identifier : 'austrijska-filharmonija-1oz',
+      weightDivider : 1 / 1,
+    }, {
+      name : 'Becka filharmonija 1/2 oz',
+      identifier : 'austrijska-filharmonija-1-2oz',
+      weightDivider : 1 / 2,
+    }, {
+      name : 'Becka filharmonija 1/4 oz',
+      identifier : 'austrijska-filharmonija-1-4oz',
+      weightDivider : 1 / 4,
+    }, {
+      name : 'Becka filharmonija 1/10 oz',
+      identifier : 'austrijska-filharmonija-1-10oz',
+      weightDivider : 1 / 10,
+    }, {
+      name : 'Becka filharmonija 1/25 oz',
+      identifier : 'austrijska-filharmonija-1-25oz',
+      weightDivider : 1 / 25,
+    }],
+    'BARS' : [{
+      name : 'Argor Heraeus 10g',
+      identifier : '10g-argor-heraeus',
+      weightDivider : 1 / (1 / (10 / 31.1)),
+    }]
+  };
   /**
    * Class constructor
    */
-  constructor({ name, spotPriceInRsd, }: {
+  constructor({ name, spotPriceInRsd, productTypes }: {
     name: string,
     spotPriceInRsd: number,
+    productTypes: string[],
   }) {
     this.name = name;
     this.spotPriceInRsd = spotPriceInRsd;
+    this.productTypes = productTypes;
   }
   /**
    * Fetch all products for a specific publisher
@@ -52,14 +63,13 @@ export default abstract class Distributer {
    */
   abstract fetchProductsData() : Promise<void>;
   /**
-   * DEBUGGG - Fali ovo. Mada morace verovatno da se refaktoruje na jako, al ono.
-   * Neka ga za sad ovako.
+   * Create a product image url.
    * 
    * @param productName 
    * @returns 
    */
   protected createProductImageUrl(productName: string): string {
-    return `/images/${productName.replaceAll('/', '-').replaceAll(' ', '_')}.jpg`;
+    return `/images/${productName}.jpg`;
   }
   /**
    * Prepare scraped data for displaying.

@@ -5,7 +5,7 @@
  * 
  * @returns {String}
  */
-export function formatPrice(price: number) : string {
+export default function formatPrice(price: number) : string {
   return new Intl.NumberFormat('sr', {
     style: 'currency',
     currency: 'RSD',

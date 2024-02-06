@@ -5,7 +5,7 @@ import { livePriceOfGold, nbsUrl } from "@/lib/constants/urls";
 /**
  * Utils
  */
-import { fetchAndInitCheerio } from "@/lib/utils/http/fetchAndInitCheerio";
+import fetchAndInitCheerio from "@/lib/utils/http/fetchAndInitCheerio";
 /**
  * Get the current gold spot price.
  * 

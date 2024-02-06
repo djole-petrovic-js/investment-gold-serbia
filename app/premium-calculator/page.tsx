@@ -13,13 +13,13 @@ import { getSpotPriceInfo } from "@/lib/providers/http";
 /**
  * Utils
  */
-import { formatPrice } from "@/lib/utils/numbers/formatPrice";
+import formatPrice from "@/lib/utils/numbers/formatPrice";
 /**
  * Page metadata
  */
 export const metadata: Metadata = {
-  title: 'Premium calculator',
-  description: 'Calculate gold premiums for easier purchases',
+  title: 'Kalkulator premija',
+  description: 'Kalkulator premija za laksu kupovinu.',
 }
 /**
  * Page for displaying all current prices information, and premium calculator client component.
