@@ -41,7 +41,7 @@ export default abstract class Distributer {
     'BARS' : [{
       name : 'Argor Heraeus 10g',
       identifier : '10g-argor-heraeus',
-      weightDivider : 1 / (1 / (10 / 31.1)),
+      weightDivider : 10 / 31.1,
     }]
   };
   /**
