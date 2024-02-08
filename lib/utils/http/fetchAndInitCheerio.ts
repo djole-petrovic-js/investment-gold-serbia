@@ -5,7 +5,7 @@ import { CheerioAPI, load } from "cheerio";
 /**
  * Constants
  */
-import { scrapingUrlsCache, scrapingUrlsTag } from "@/lib/constants/app";
+import { SCRAPING_URLS_CACHE, SCRAPING_URLS_TAG } from "@/lib/constants/app";
 /**
  * Fetch a source content from an URL, and return an initialized Cheerio instance.
  * 
@@ -16,8 +16,8 @@ import { scrapingUrlsCache, scrapingUrlsTag } from "@/lib/constants/app";
 export default async function fetchAndInitCheerio(url: string) : Promise<CheerioAPI> {
   const response = await fetch(url, {
     next: {
-      revalidate: scrapingUrlsCache,
-      tags: [scrapingUrlsTag]
+      revalidate: SCRAPING_URLS_CACHE,
+      tags: [SCRAPING_URLS_TAG]
     }
   });
 

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   const { spotPriceInRsd } = await getSpotPriceInfo();
 
-  const distributersInstance = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
+  const distributersInstances = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
     spotPriceInRsd: spotPriceInRsd,
     productTypes: ['COINS'],
   }));
@@ -36,7 +36,7 @@ export default async function Home() {
   return (
     <main className="bg-black">
       <h1 className="text-white">Kovanice</h1>
-      <DistributersListing distributers={distributersInstance} />
+      <DistributersListing distributers={distributersInstances} />
     </main>
   )
 }

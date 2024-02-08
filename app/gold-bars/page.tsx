@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default async function GoldBars() {
   const { spotPriceInRsd } = await getSpotPriceInfo();
 
-  const distributersInstance = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
+  const distributersInstances = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
     spotPriceInRsd: spotPriceInRsd,
     productTypes: ['BARS'],
   }));
@@ -36,7 +36,7 @@ export default async function GoldBars() {
   return (
     <main className="bg-black">
       <h1 className="text-white">Poluge</h1>
-      <DistributersListing distributers={distributersInstance} />
+      <DistributersListing distributers={distributersInstances} />
     </main>
   )
 }

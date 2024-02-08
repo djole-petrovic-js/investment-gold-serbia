@@ -1,5 +1,12 @@
 /**
- * Cache info for fetch requests, used for scraping other pages.
+ * Cache duration in seconds for fetch requests, used for scraping other pages.
  */
-export const scrapingUrlsCache = 15 * 60 * 1000;
-export const scrapingUrlsTag = 'scraping-requests';
+export const SCRAPING_URLS_CACHE = 15 * 60;
+/**
+ * Tag for fetch scraping, so it can be revalidated.
+ */
+export const SCRAPING_URLS_TAG = 'scraping-requests';
+/**
+ * 
+ */
+export const SITE_BASE_URL = 'http://localhost:3000';
