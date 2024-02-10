@@ -12,7 +12,7 @@ export default function Header() {
 				IZS
 			</div>
 
-			<div className="flex gap-2">
+			<div className="flex gap-5">
 				<Link href="/">Kovanice</Link>
 				<Link href="/premium-calculator">Kalkulator Premija</Link>
 				<Link href="/gold-bars">Poluge</Link>
