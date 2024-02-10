@@ -4,8 +4,8 @@
 import Distributer from "@/lib/classes/abstract/Distributer";
 /**
  * Components
- */
-import SingleDistributer from "@/lib/components/distributers/SIngleDistributer";
+*/
+import SingleDistributer from "@/lib/components/distributers/SingleDistributer";
 /**
  * Props
  */
