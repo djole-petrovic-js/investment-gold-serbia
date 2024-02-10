@@ -6,7 +6,3 @@ export const SCRAPING_URLS_CACHE = 15 * 60;
  * Tag for fetch scraping, so it can be revalidated.
  */
 export const SCRAPING_URLS_TAG = 'scraping-requests';
-/**
- * 
- */
-export const SITE_BASE_URL = 'http://localhost:3000';

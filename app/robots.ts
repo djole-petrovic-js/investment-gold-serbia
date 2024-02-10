@@ -5,7 +5,7 @@ import { MetadataRoute } from 'next'
 /**
  * Constants.
  */
-import { SITE_BASE_URL } from '@/lib/constants/app'
+import { SITE_BASE_URL } from "@/lib/constants/environment";
 /**
  * Serve the static robots.txt file.
  */

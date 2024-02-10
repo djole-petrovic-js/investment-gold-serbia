@@ -5,7 +5,7 @@ import RSS from "rss";
 /**
  * Constants
  */
-import { SITE_BASE_URL } from "@/lib/constants/app";
+import { SITE_BASE_URL } from "@/lib/constants/environment";
 /**
  * This route should not be cached, since it can be updated.
  */
