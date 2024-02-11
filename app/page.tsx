@@ -1,42 +1,45 @@
 /**
- * Next.js core
+ * Next.js core.
  */
-import type { Metadata } from 'next'
+import type { Metadata } from "next"
 import Image from "next/image"
 /**
- * App core
+ * App core.
  */
-import TavexDistributer from '@/lib/classes/distributers/TavexDistributer'
-import GVSDistributer from '@/lib/classes/distributers/GVSDistributer'
+import TavexDistributer from "@/lib/classes/distributers/TavexDistributer"
+import GVSDistributer from "@/lib/classes/distributers/GVSDistributer"
 /**
- * Components
+ * Components.
  */
-import DistributersListing from '@/lib/components/distributers/DistributersListing'
+import DistributersListing from "@/lib/components/distributers/DistributersListing"
 /**
- * Providers
+ * Providers.
  */
-import { getSpotPriceInfo } from '@/lib/providers/http'
+import { getSpotPriceInfo } from "@/lib/providers/http"
 /**
- * Page Images
+ * Page Images.
  */
 import goldCoinsCoverImage from "@/public/images/gold-coins.jpg"
 /**
  * Page metadata
  */
 export const metadata: Metadata = {
-  title: 'IZS - Kovanice',
-  description: 'Investiciono Zlato Srbija - Kovanice',
+  title: "IZS - Kovanice",
+  description: "Investiciono Zlato Srbija - Kovanice"
 }
 /**
- * Display all coins from recommended distributers. 
+ * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  const { spotPriceInRsd } = await getSpotPriceInfo();
+  const { spotPriceInRsd } = await getSpotPriceInfo()
 
-  const distributersInstances = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
-    spotPriceInRsd: spotPriceInRsd,
-    productTypes: ['COINS'],
-  }));
+  const distributersInstances = [TavexDistributer, GVSDistributer].map(
+    (distributor) =>
+      new distributor({
+        spotPriceInRsd: spotPriceInRsd,
+        productTypes: ["COINS"]
+      })
+  )
 
   return (
     <main className="bg-black">
@@ -59,7 +62,8 @@ export default async function Home() {
               Najlikvidnije investiciono zlato.
               <br />
               <br />
-              Zakonsko sredstvo placanja u zemljama porekla, sa jakim sigurnostnim elementima.
+              Zakonsko sredstvo placanja u zemljama porekla, sa jakim
+              sigurnostnim elementima.
               <br />
               <br />
               Prepoznatljive sirom sveta.
@@ -67,7 +71,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      
+
       <DistributersListing distributers={distributersInstances} />
     </main>
   )
