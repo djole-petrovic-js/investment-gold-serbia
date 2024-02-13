@@ -2,7 +2,11 @@
  * Next.js core
  */
 import type { NextAuthConfig } from "next-auth"
-import { IS_DEV_ENV } from "./lib/constants/environment"
+import { headers } from "next/headers"
+/**
+ * Environment.
+ */
+import { API_TOKEN, IS_DEV_ENV } from "./lib/constants/environment"
 /**
  * Partial login config.
  */
@@ -24,7 +28,8 @@ export const authConfig = {
         return true
       }
 
-      const isLoggedIn = !!auth?.user
+      const isLoggedIn =
+        !!auth?.user || headers().get("Authorization") === `Bearer ${API_TOKEN}`
 
       if (!isLoggedIn) {
         return false

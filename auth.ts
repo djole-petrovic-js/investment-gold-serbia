@@ -11,12 +11,18 @@ import { authConfig } from "./auth.config"
 /**
  * Database
  */
-import User from "@/models/User"
+import sequelize from "./lib/database/sequelize"
+
+import { IUserModel } from "./lib/database/models/User"
 /**
  * Try to authorize a user.
  */
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  session: {
+    strategy: "jwt",
+    maxAge: 4 * 60 * 60 // 4 hours
+  },
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -30,7 +36,9 @@ export const { auth, signIn, signOut } = NextAuth({
 
         const { email, password } = parsedCredentials.data
 
-        const user = await User.findOne({ where: { email } })
+        const user = (await sequelize.models.User.findOne({
+          where: { email }
+        })) as IUserModel
 
         if (!user || !(await user.comparePasswords(password))) {
           return null
