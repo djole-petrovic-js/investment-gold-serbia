@@ -4,18 +4,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 /**
- * App core.
- */
-import TavexDistributer from "@/lib/classes/distributers/TavexDistributer"
-import GVSDistributer from "@/lib/classes/distributers/GVSDistributer"
-/**
  * Components.
  */
 import DistributersListing from "@/lib/components/distributers/DistributersListing"
 /**
- * Providers.
+ * Utils.
  */
-import { getSpotPriceInfo } from "@/lib/providers/http"
+import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
 /**
  * Page Images.
  */
@@ -31,15 +26,7 @@ export const metadata: Metadata = {
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  const { spotPriceInRsd } = await getSpotPriceInfo()
-
-  const distributersInstances = [TavexDistributer, GVSDistributer].map(
-    (distributor) =>
-      new distributor({
-        spotPriceInRsd: spotPriceInRsd,
-        productTypes: ["COINS"]
-      })
-  )
+  const distributers = await fetchDistributersByProductTypes(["COINS"])
 
   return (
     <main className="bg-black">
@@ -50,7 +37,7 @@ export default async function Home() {
             priority={true}
             className="h-screen object-cover"
             alt="Gold bars"
-            sizes="(min-width: 2700px) 2560px, calc(94.96vw + 15px)"
+            sizes="100vh"
           />
         </div>
 
@@ -59,20 +46,18 @@ export default async function Home() {
             <h3 className="text-4xl text-center mb-10">Zlatne kovanice</h3>
 
             <h4 className="text-2xl tracking-widest">
-              Najlikvidnije investiciono zlato.
-              <br />
-              <br />
-              Zakonsko sredstvo placanja u zemljama porekla, sa jakim
-              sigurnostnim elementima.
-              <br />
-              <br />
-              Prepoznatljive sirom sveta.
+              <p className="mb-4">Najlikvidnije investiciono zlato.</p>
+              <p className="mb-4">
+                Zakonsko sredstvo placanja u zemljama porekla, sa jakim
+                sigurnostnim elementima.
+              </p>
+              <p>Prepoznatljive sirom sveta.</p>
             </h4>
           </div>
         </div>
       </div>
 
-      <DistributersListing distributers={distributersInstances} />
+      <DistributersListing distributers={distributers} />
     </main>
   )
 }

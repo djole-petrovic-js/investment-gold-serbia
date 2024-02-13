@@ -3,19 +3,16 @@
  */
 import Image from "next/image"
 /**
- * Types
- */
-import type { FormatedProductType } from "@/lib/types/products"
-/**
  * Utils
  */
 import formatPercentage from "@/lib/utils/numbers/formatPercentage"
 import formatPrice from "@/lib/utils/numbers/formatPrice"
+import { IProductModel } from "@/lib/database/models/Product"
 /**
  * Props
  */
 type ProductProps = {
-  product: FormatedProductType,
+  product: IProductModel,
 }
 /**
  * Display info about a single distributer's product.
@@ -27,7 +24,7 @@ export default function SingleProduct({ product } : ProductProps) {
       className="flex justify-evenly bg-black p-5 border border-white rounded-md"
     >
       <div className="flex items-center mr-4 w-40">
-        <Image src={product.productImageUrl} width={300} height={300} alt={product.name} />
+        <Image src={product.createProductImageUrl()} width={300} height={300} alt={product.name} />
       </div>
 
       <div className="flex flex-col items-center">

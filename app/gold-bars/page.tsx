@@ -1,41 +1,32 @@
 /**
  * Next.js core
  */
-import type { Metadata } from 'next'
-/**
- * App core
- */
-import TavexDistributer from '@/lib/classes/distributers/TavexDistributer'
-import GVSDistributer from '@/lib/classes/distributers/GVSDistributer'
+import type { Metadata } from "next"
+import Image from "next/image"
 /**
  * Components
  */
-import DistributersListing from '@/lib/components/distributers/DistributersListing'
+import DistributersListing from "@/lib/components/distributers/DistributersListing"
 /**
- * Providers
+ * Utils.
  */
-import { getSpotPriceInfo } from '@/lib/providers/http'
+import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
+/**
+ * Page Images.
+ */
+import imageCover from "@/public/images/gold-bars.webp"
 /**
  * Page metadata
  */
 export const metadata: Metadata = {
-  title: 'IZS - Poluge',
-  description: 'Investiciono zlato Srbija - Poluge',
+  title: "IZS - Poluge",
+  description: "Investiciono zlato Srbija - Poluge"
 }
-
-import Image from "next/image"
-import imageCover from "@/public/images/gold-bars.webp"
-
 /**
  * Display all gold bars from recommended distributers.
  */
 export default async function GoldBars() {
-  const { spotPriceInRsd } = await getSpotPriceInfo();
-
-  const distributersInstances = [TavexDistributer, GVSDistributer].map((distributor) => new distributor({
-    spotPriceInRsd: spotPriceInRsd,
-    productTypes: ['BARS'],
-  }));
+  const distributers = await fetchDistributersByProductTypes(["BARS"])
 
   return (
     <main className="bg-black">
@@ -46,7 +37,7 @@ export default async function GoldBars() {
             src={imageCover}
             alt="Gold bars"
             priority={true}
-            sizes="(min-width: 2700px) 2560px, calc(94.96vw + 15px)"
+            sizes="100vh"
           />
         </div>
 
@@ -55,19 +46,20 @@ export default async function GoldBars() {
             <h3 className="text-4xl text-center mb-10">Zlatne poluge</h3>
 
             <h4 className="text-2xl tracking-widest">
-              Dolaze u zastitnim pakovanjima, pa su lake za cuvanje.
-              <br />
-              <br />
-              Jeftinije od kovanica, sa manjom izmedju kupovne i prodajne cene.
-              <br />
-              <br />
-              Razne vrste proizvodjaca.
+              <p className="mb-4">
+                Dolaze u zastitnim pakovanjima, pa su lake za cuvanje.
+              </p>
+              <p className="mb-4">
+                Jeftinije od kovanica, sa manjom izmedju kupovne i prodajne
+                cene.
+              </p>
+              <p>Razne vrste proizvodjaca.</p>
             </h4>
           </div>
         </div>
       </div>
 
-      <DistributersListing distributers={distributersInstances} />
+      <DistributersListing distributers={distributers} />
     </main>
   )
 }
