@@ -5,7 +5,7 @@
   create table Products (
     id int(10) unsigned NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    slug VARCHAR(255) NOT NULL UNIQUE,
+    slug VARCHAR(255) NOT NULL,
     productType VARCHAR(255) NOT NULL,
     priceSell FLOAT NOT NULL,
     priceBuy FLOAT NOT NULL,
