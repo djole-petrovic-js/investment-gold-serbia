@@ -20,7 +20,8 @@ import imageCover from "@/public/images/gold-bars.webp"
  */
 export const metadata: Metadata = {
   title: "IZS - Poluge",
-  description: "Investiciono zlato Srbija - Poluge"
+  description: "Investiciono zlato Srbija - Poluge",
+  keywords: ["zlato", "investiranje", "poluge"]
 }
 /**
  * Display all gold bars from recommended distributers.
@@ -30,14 +31,15 @@ export default async function GoldBars() {
 
   return (
     <main className="bg-black">
+      {/* Begin - Cover photo with short info */}
       <div className="mt-1">
         <div className="absolute h-screen">
           <Image
             className="h-screen object-cover"
             src={imageCover}
-            alt="Gold bars"
+            alt="Zlatne Poluge Cover Slika"
             priority={true}
-            sizes="100vh"
+            sizes="100vw"
           />
         </div>
 
@@ -58,7 +60,38 @@ export default async function GoldBars() {
           </div>
         </div>
       </div>
+      {/* END - Cover photo with short info */}
+      {/* BEGIN - Info about gold bars */}
+      <div className="text-white p-5">
+        <h1 className="text-5xl mb-5 italic">Zasto poluge?</h1>
 
+        <p className="text-xl mb-10">
+          Takozvana assay pakovanja su idealna za cuvanje zlatnih poluga, jer je
+          zlato u njima hermeticki zatvoreno i potpuno zasticeno od ogrebotina,
+          udaraca, otisaka prstiju i sl. Zahvaljujuci modernim tehnologijama za
+          ispitivanje autenticnosti metala, zlato u ovakvim pakovanjima je lako
+          testirati i utvrditi da je pravo.
+        </p>
+
+        <p className="text-xl mb-10">
+          Zbog jednostavnosti izrade, poluge su nesto jeftinije od kovanica, pa
+          predstavljaju mozda i efikasniji nacin za kupovinu vece kolicine
+          zlata. Takodje, razlika izmedju kupovne i prodajne cene (spread) je
+          takodje manja, sto ih cini pogodnim za investiranje.
+        </p>
+
+        <p className="text-xl mb-10">
+          Na trzistu se prodaju poluge kako suverenih kovnica, tako i privatnih.
+          Za razliku od kovanica, prodaju se i velicine vece od jedne unce, npr.
+          zlatna poluga od 100gr, pa i od jednog kilograma.
+        </p>
+
+        <p className="text-xl">
+          Pogledajte ponudu najboljih distributera investicionog zlata u srbiji
+          ispod.
+        </p>
+      </div>
+      {/* BEGIN - Info about gold bars */}
       <DistributersListing distributers={distributers} />
     </main>
   )

@@ -20,7 +20,8 @@ import formatPrice from "@/lib/utils/numbers/formatPrice"
  */
 export const metadata: Metadata = {
   title: "Kalkulator premija",
-  description: "Kalkulator premija za laksu kupovinu."
+  description: "Kalkulator premija za laksu kupovinu.",
+  keywords: ["zlato", "investiciono zlato", "premija", "Kalkulator premija"]
 }
 /**
  * Page for displaying all current prices information, and premium calculator client component.
@@ -48,7 +49,7 @@ export default async function PremiumCalculator() {
   return (
     <div className="text-white bg-black">
       <div className="m-auto w-4/5 py-5">
-        <h1 className="text-4xl">Kalkulator premija za zlatne proizvode</h1>
+        <h1 className="text-4xl">Kalkulator premija za investiciono zlato</h1>
 
         <div className="my-4">
           <p>
