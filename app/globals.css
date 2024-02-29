@@ -1,3 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer components {
+  .disabled {
+    opacity: theme("opacity.50");
+    background-color: theme("backgroundColor.gray.300");
+    cursor: theme("cursor.not-allowed");
+  }
+}
