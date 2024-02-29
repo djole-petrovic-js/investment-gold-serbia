@@ -53,8 +53,9 @@ export default function Hamburger() {
 
         <nav className="whitespace-nowrap text-center text-2xl space-y-4 flex flex-col">
           <Link href="/">Kovanice</Link>
-          <Link href="/premium-calculator">Kalkulator Premija</Link>
           <Link href="/gold-bars">Poluge</Link>
+          <Link href="/premium-calculator">Kalkulator Premija</Link>
+          <Link href="/about">O nama</Link>
         </nav>
       </div>
 

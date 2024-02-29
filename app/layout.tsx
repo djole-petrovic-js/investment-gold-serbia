@@ -2,8 +2,13 @@
  * Next.js Core.
  */
 import { Metadata } from "next"
+import { Roboto } from "next/font/google"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
+/**
+ * Constants
+ */
+import { projectGithubUrl } from "@/lib/constants/urls"
 /**
  * CSS.
  */
@@ -18,11 +23,19 @@ import Footer from "@/lib/components/Footer"
  */
 export const metadata: Metadata = {
   authors: {
-    url: "https://github.com/djole-petrovic-js/investment-gold-serbia",
+    url: projectGithubUrl,
     name: "Djordje Petrovic"
   },
   applicationName: "Investment gold Serbia"
 }
+/**
+ * Initialize Roboto fonts
+ */
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap"
+})
 /**
  * Some Fontawesome hack...
  */
@@ -36,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="sr">
+    <html lang="sr" className={roboto.className}>
       <body>
         <Header />
         {children}

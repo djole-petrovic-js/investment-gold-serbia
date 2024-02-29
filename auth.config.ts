@@ -1,5 +1,5 @@
 /**
- * Next.js core
+ * Next.js core.
  */
 import type { NextAuthConfig } from "next-auth"
 import { headers } from "next/headers"
