@@ -4,8 +4,9 @@
 
 @layer components {
   .disabled {
-    opacity: theme("opacity.50");
-    background-color: theme("backgroundColor.gray.300");
-    cursor: theme("cursor.not-allowed");
+    /* opacity: theme("opacity.50"); */
+    /* background-color: theme("backgroundColor.gray.300"); */
+    /* cursor: theme("cursor.not-allowed"); */
+    @apply bg-gray-300 opacity-50 cursor-not-allowed;
   }
 }
