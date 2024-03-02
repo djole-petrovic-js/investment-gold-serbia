@@ -6,7 +6,7 @@ import { headers } from "next/headers"
 /**
  * Environment.
  */
-import { API_TOKEN, IS_DEV_ENV } from "./lib/constants/environment"
+import { API_TOKEN } from "./lib/constants/environment"
 /**
  * Partial login config.
  */
@@ -21,7 +21,7 @@ export const authConfig = {
    *
    * https://errors.authjs.dev#untrustedhost
    */
-  trustHost: IS_DEV_ENV,
+  trustHost: true,
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       if (!nextUrl.pathname.startsWith("/admin")) {
