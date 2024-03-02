@@ -4,13 +4,13 @@
 export default class Timer {
   private startTime: number = 0
   private endTime: number = 0
-  private timePassedInSeconds = 0
+  private timePassedInSeconds: number = 0
   /**
-   * Class constructor
+   * Class constructor.
    */
   constructor() {}
   /**
-   * Mark start
+   * Mark start.
    *
    * @returns {void}
    */
@@ -25,11 +25,11 @@ export default class Timer {
   public end(): void {
     this.endTime = performance.now()
     /**
-     * In miliseconds
+     * In miliseconds.
      */
     let timeDiff = this.endTime - this.startTime
     /**
-     * strip the ms
+     * Strip the ms.
      */
     timeDiff /= 1000
     /**
