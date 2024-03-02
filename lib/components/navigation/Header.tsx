@@ -33,6 +33,7 @@ export default function Header() {
           <Link
             className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
             href="/"
+            prefetch={false}
           >
             Kovanice
           </Link>
@@ -40,6 +41,7 @@ export default function Header() {
           <Link
             className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
             href="/gold-bars"
+            prefetch={false}
           >
             Poluge
           </Link>
@@ -47,6 +49,7 @@ export default function Header() {
           <Link
             className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
             href="/premium-calculator"
+            prefetch={false}
           >
             Kalkulator Premija
           </Link>
@@ -54,6 +57,7 @@ export default function Header() {
           <Link
             className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
             href="/about"
+            prefetch={false}
           >
             O nama
           </Link>
