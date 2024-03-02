@@ -31,7 +31,7 @@ export default function Hamburger() {
       <div
         className={`
           ${showMenu ? "w-5/6" : "w-0"} transition-all duration-300
-          ease-in-out fixed h-screen bg-black text-white top-0 right-0 space-y-5
+          ease-in-out fixed h-screen bg-black text-white top-0 right-0 space-y-5 border-l-2
         `}
       >
         <div
