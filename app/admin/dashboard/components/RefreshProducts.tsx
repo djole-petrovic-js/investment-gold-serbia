@@ -11,7 +11,7 @@ import type { RefreshProductsType } from "@/lib/types/http/refreshProductsType"
  * Client component for handling database refreshing.
  */
 export default function RefreshData() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [ajaxData, setAjaxData] = useState<RefreshProductsType | null>(null)
 
   function refreshData() {

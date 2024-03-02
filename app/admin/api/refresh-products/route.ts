@@ -24,11 +24,7 @@ import Timer from "@/lib/utils/timer"
 /**
  * Fetch all dynamic data from the scraped pages, and update the database.
  *
- * This route should never use cache.
- *
  * Revalidate static pages.
- *
- * /protected/refresh-products
  */
 export async function GET() {
   const timer = new Timer()
