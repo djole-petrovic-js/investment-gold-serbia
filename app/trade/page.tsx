@@ -25,7 +25,7 @@ export default async function Trade() {
 
           <p className="text-xl">
             Distributeri mogu naravno imati i druge proizvode sem ovih, ali ovi
-            su zajednicki, tako da jedino njih mozemo uporedjivati
+            su zajednicki, tako da jedino njih mozemo uporedjivati.
           </p>
 
           <p className="text-xl">

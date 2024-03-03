@@ -113,7 +113,7 @@ export default function BestDeals({
 
             <div className="flex justify-around w-full text-xl sm:text-sm">
               <div className="space-y-1">
-                <p>Kupite od</p>
+                <p>Kupite za</p>
                 <p>Kupovna premija</p>
               </div>
 
@@ -152,7 +152,7 @@ export default function BestDeals({
 
             <div className="flex justify-around w-full text-xl sm:text-sm">
               <div>
-                <p>Prodajte od</p>
+                <p>Prodajte za</p>
                 <p>Prodajna premija</p>
               </div>
 
