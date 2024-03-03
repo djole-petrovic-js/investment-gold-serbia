@@ -51,8 +51,8 @@ export default class TavexDistributer extends Distributer {
   async fetchProductsData(): Promise<void> {
     const cheerio = await fetchAndInitCheerio(this.mainUrl)
 
-    for (const productType of Object.keys(this.products)) {
-      for (const product of this.products[productType]) {
+    for (const productType of Object.keys(Distributer.products)) {
+      for (const product of Distributer.products[productType]) {
         const { priceSellSelector, priceBuySelector } =
           this.getProductHtmlSelectors(product.identifier)
 
@@ -70,6 +70,25 @@ export default class TavexDistributer extends Distributer {
             .replace("din", "")
             .replace(" ", "")
         )
+        /**
+         * If price or sell is 0, something went wrong, or the page is being maintained or something.
+         * All other selectors should work fine, if the price is found.
+         */
+        if (!priceSell) {
+          throw new Error("Price sell was empty!")
+        }
+
+        if (!priceBuy) {
+          throw new Error("Price sell was empty!")
+        }
+
+        const urlSell = cheerio(priceSellSelector)
+          .closest("a.product")
+          .attr("href")
+
+        const urlBuy = cheerio(priceSellSelector)
+          .closest("a.product")
+          .attr("href")
 
         this.fetchedProducts.push({
           name: product.name,
@@ -86,7 +105,9 @@ export default class TavexDistributer extends Distributer {
             priceBuy,
             product.weightDivider,
             this.spotPriceInRsd
-          )
+          ),
+          urlSell: urlSell,
+          urlBuy: urlBuy
         } as IProductModel)
       }
     }

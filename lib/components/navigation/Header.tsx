@@ -16,7 +16,7 @@ import logoImg from "@/public/images/logo.png"
  */
 export default function Header() {
   return (
-    <nav className="flex p-1 justify-between bg-white relative z-20">
+    <nav className="flex p-1 justify-between bg-white fixed w-full z-20">
       <div className="flex">
         <div className="mr-1">
           <Link href="/">
@@ -33,7 +33,6 @@ export default function Header() {
           <Link
             className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
             href="/"
-            prefetch={false}
           >
             Kovanice
           </Link>
@@ -41,9 +40,16 @@ export default function Header() {
           <Link
             className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
             href="/gold-bars"
-            prefetch={false}
           >
             Poluge
+          </Link>
+
+          <Link
+            className="hover:bg-black hover:text-white py-3 px-3 rounded-md"
+            href="/trade"
+            prefetch={false}
+          >
+            Trgovina
           </Link>
 
           <Link

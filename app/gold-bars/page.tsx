@@ -31,7 +31,7 @@ export default async function GoldBars() {
   const distributers = await fetchDistributersByProductTypes(["BARS"])
 
   return (
-    <main className="bg-black">
+    <main className="main">
       {/* Begin - Cover photo with short info */}
       <div className="mt-1">
         <div className="absolute h-screen">

@@ -31,7 +31,7 @@ export default async function Home() {
   const distributers = await fetchDistributersByProductTypes(["COINS"])
 
   return (
-    <main className="bg-black">
+    <main className="main">
       {/* BEGIN - Cover photo with short info */}
       <div className="mt-1">
         <div className="absolute h-screen">

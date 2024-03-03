@@ -9,4 +9,8 @@
     /* cursor: theme("cursor.not-allowed"); */
     @apply bg-gray-300 opacity-50 cursor-not-allowed;
   }
+
+  .main {
+    @apply bg-black text-white pt-16;
+  }
 }

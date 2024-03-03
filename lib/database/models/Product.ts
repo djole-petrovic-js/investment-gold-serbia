@@ -12,6 +12,8 @@
     priceSellPremium FLOAT NOT NULL,
     priceBuyPremium FLOAT NOT NULL,
     distributerId int(10) unsigned NOT NULL,
+    urlSell varchar(255) not null default '',
+    urlBuy varchar(255) not null default '',
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     primary key (id)
@@ -47,8 +49,9 @@ export interface IProductModel
   priceBuy: number
   priceSellPremium: number
   priceBuyPremium: number
+  urlSell: string
+  urlBuy: string
   distributerId: number
-  createProductImageUrl: () => string
 }
 /**
  * Model definer function.
@@ -61,7 +64,7 @@ export default function ProductModelInit(sequelize: Sequelize): void {
   /**
    * Model definition.
    */
-  const Product = sequelize.define<IProductModel>(
+  sequelize.define<IProductModel>(
     "Product",
     {
       id: {
@@ -97,6 +100,14 @@ export default function ProductModelInit(sequelize: Sequelize): void {
         type: DataTypes.NUMBER,
         allowNull: false
       },
+      urlSell: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      urlBuy: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
       distributerId: {
         type: DataTypes.NUMBER,
         allowNull: false
@@ -106,12 +117,4 @@ export default function ProductModelInit(sequelize: Sequelize): void {
       timestamps: true
     }
   )
-  /**
-   * Create a product image url.
-   *
-   * @returns {String}
-   */
-  Product.prototype.createProductImageUrl = function (): string {
-    return `/images/${this.slug}.jpg`
-  }
 }

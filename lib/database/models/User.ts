@@ -44,7 +44,6 @@ export interface IUserModel
   lastName: string
   email: string
   password: string
-  comparePasswords: (password: string) => Promise<boolean>
 }
 /**
  * Model definer function.
@@ -80,22 +79,6 @@ export default function UserModelInit(sequelize: Sequelize): void {
       allowNull: false
     }
   })
-  /**
-   * Compare the user DB hash, with the password provided.
-   *
-   * @param {String} password
-   *
-   * @return {Promise<boolean>} isMatched
-   */
-  User.prototype.comparePasswords = async function (
-    password: string
-  ): Promise<boolean> {
-    const { isMatched } = await new Password(password).comparePasswords(
-      this.password
-    )
-
-    return isMatched
-  }
   /**
    * Before a new user is inserted into the database, hash his password.
    *
