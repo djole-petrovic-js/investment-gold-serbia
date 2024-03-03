@@ -52,7 +52,7 @@ export default function TradeClientUi({ distributers }: BestDealProps) {
               className={`
                 ${product.slug === selectedProductSlug ? "bg-opacity-20 bg-white" : "bg-black"}
                 flex flex-col sm:flex-row justify-between
-                p-5 border border-white text-white rounded-md cursor-pointer`}
+                p-5 border border-white text-white rounded-md cursor-pointer hover:bg-opacity-20 hover:bg-white`}
             >
               <div className="flex mr-4 w-full sm:w-4/12 justify-center">
                 <Image
