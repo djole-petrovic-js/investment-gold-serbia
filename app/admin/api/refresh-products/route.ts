@@ -78,20 +78,24 @@ export async function GET() {
           value
         }
       )
-    }),
-    /**
-     * Distributers and Products.
-     */
-    ...[TavexDistributer, GVSDistributer].map(async (distributer) => {
-      const distributerInstance = new distributer({
-        spotPriceInRsd: spotPriceInRsd
-      })
-
-      await distributerInstance.fetchProductsData()
-
-      return distributerInstance.saveFormatedDistributerData()
     })
   ])
+  /**
+   * Distributers and Products.
+   *
+   * Note : This can be wrapped inside of a Promise.all call, but the ordering of
+   * the products in the database wont be right.
+   *
+   * Maybe try to think of a better solution.
+   */
+  for (const distributer of [TavexDistributer, GVSDistributer]) {
+    const distributerInstance = new distributer({
+      spotPriceInRsd: spotPriceInRsd
+    })
+
+    await distributerInstance.fetchProductsData()
+    await distributerInstance.saveFormatedDistributerData()
+  }
 
   revalidatePath("/")
   revalidatePath("/gold-bars")
