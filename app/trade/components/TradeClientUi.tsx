@@ -31,6 +31,10 @@ export default function TradeClientUi({ distributers }: BestDealProps) {
    */
   const availableProducts = distributers[0]
 
+  if (!availableProducts) {
+    return null
+  }
+
   return (
     <div>
       {selectedProductSlug && (
