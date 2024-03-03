@@ -88,12 +88,19 @@ export async function GET() {
    *
    * Maybe try to think of a better solution.
    */
-  for (const distributer of [TavexDistributer, GVSDistributer]) {
-    const distributerInstance = new distributer({
-      spotPriceInRsd: spotPriceInRsd
-    })
+  const distributerInstances = await Promise.all(
+    [TavexDistributer, GVSDistributer].map(async (distributer) => {
+      const distributerInstance = new distributer({
+        spotPriceInRsd: spotPriceInRsd
+      })
 
-    await distributerInstance.fetchProductsData()
+      await distributerInstance.fetchProductsData()
+
+      return distributerInstance
+    })
+  )
+
+  for (const distributerInstance of distributerInstances) {
     await distributerInstance.saveFormatedDistributerData()
   }
 
