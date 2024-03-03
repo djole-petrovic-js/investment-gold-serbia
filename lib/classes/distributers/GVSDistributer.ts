@@ -67,10 +67,49 @@ export default class GVSDistributer extends Distributer {
           priceBuySelector: "#product-price-1427"
         }
       }
+      /**
+       * Bars
+       */
+      case "100g-argor-heraeus": {
+        return {
+          priceSellSelector: "#product-price-1805",
+          priceBuySelector: "#product-price-1592"
+        }
+      }
+      case "50g-argor-heraeus": {
+        return {
+          priceSellSelector: "#product-price-1071",
+          priceBuySelector: "#product-price-1591"
+        }
+      }
+      case "1oz-argor-heraeus": {
+        return {
+          priceSellSelector: "#product-price-1070",
+          priceBuySelector: "#product-price-1590"
+        }
+      }
+      case "20g-argor-heraeus": {
+        return {
+          priceSellSelector: "#product-price-1069",
+          priceBuySelector: "#product-price-1588"
+        }
+      }
       case "10g-argor-heraeus": {
         return {
           priceSellSelector: "#product-price-1068",
           priceBuySelector: "#product-price-1587"
+        }
+      }
+      case "5g-argor-heraeus": {
+        return {
+          priceSellSelector: "#product-price-1067",
+          priceBuySelector: "#product-price-1586"
+        }
+      }
+      case "2g-argor-heraeus": {
+        return {
+          priceSellSelector: "#product-price-1173",
+          priceBuySelector: "#product-price-1585"
         }
       }
       default: {
@@ -98,8 +137,8 @@ export default class GVSDistributer extends Distributer {
     /**
      * Now find all products in the DOM, and fetch all related data.
      */
-    for (const productType of Object.keys(this.products)) {
-      for (const product of this.products[productType]) {
+    for (const productType of Object.keys(Distributer.products)) {
+      for (const product of Distributer.products[productType]) {
         const { priceSellSelector, priceBuySelector } =
           this.getProductHtmlSelectors(product.identifier)
 
@@ -115,6 +154,27 @@ export default class GVSDistributer extends Distributer {
         const priceBuy = Number(
           cheerioBuy(priceBuySelector).attr("data-price-amount")
         )
+        /**
+         * If price or sell is 0, something went wrong, or the page is being maintained or something.
+         * All other selectors should work fine, if the price is found.
+         */
+        if (!priceSell) {
+          throw new Error("Price sell was empty!")
+        }
+
+        if (!priceBuy) {
+          throw new Error("Price sell was empty!")
+        }
+
+        const urlSell = cheerioSell(priceSellSelector)
+          .closest("div.product-item-details")
+          .prev()
+          .attr("href")
+
+        const urlBuy = cheerioBuy(priceBuySelector)
+          .closest("div.product-item-details")
+          .prev()
+          .attr("href")
 
         this.fetchedProducts.push({
           name: product.name,
@@ -132,7 +192,8 @@ export default class GVSDistributer extends Distributer {
             product.weightDivider,
             this.spotPriceInRsd
           ),
-          distributerId: 0
+          urlSell,
+          urlBuy
         } as IProductModel)
       }
     }

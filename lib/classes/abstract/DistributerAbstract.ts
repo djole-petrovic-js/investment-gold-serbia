@@ -21,7 +21,7 @@ export default abstract class DistributerAbstract {
   protected name: string
   protected spotPriceInRsd: number
 
-  protected products: DistributerProductsType = {
+  protected static products: DistributerProductsType = {
     COINS: [
       {
         name: "Becka filharmonija 1 oz",
@@ -51,9 +51,39 @@ export default abstract class DistributerAbstract {
     ],
     BARS: [
       {
+        name: "Argor Heraeus 100g",
+        identifier: "100g-argor-heraeus",
+        weightDivider: 100 / 31.1
+      },
+      {
+        name: "Argor Heraeus 50g",
+        identifier: "50g-argor-heraeus",
+        weightDivider: 50 / 31.1
+      },
+      {
+        name: "Argor Heraeus 1oz (31.1g)",
+        identifier: "1oz-argor-heraeus",
+        weightDivider: 1
+      },
+      {
+        name: "Argor Heraeus 20g",
+        identifier: "20g-argor-heraeus",
+        weightDivider: 20 / 31.1
+      },
+      {
         name: "Argor Heraeus 10g",
         identifier: "10g-argor-heraeus",
         weightDivider: 10 / 31.1
+      },
+      {
+        name: "Argor Heraeus 5g",
+        identifier: "5g-argor-heraeus",
+        weightDivider: 5 / 31.1
+      },
+      {
+        name: "Argor Heraeus 2g",
+        identifier: "2g-argor-heraeus",
+        weightDivider: 2 / 31.1
       }
     ]
   }
@@ -103,6 +133,8 @@ export default abstract class DistributerAbstract {
         priceBuy: product.priceBuy,
         priceSellPremium: product.priceSellPremium,
         priceBuyPremium: product.priceBuyPremium,
+        urlSell: product.urlSell,
+        urlBuy: product.urlBuy,
         distributerId: distributer.id
       }
 
