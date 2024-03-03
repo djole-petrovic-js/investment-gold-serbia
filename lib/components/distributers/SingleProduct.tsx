@@ -25,7 +25,7 @@ export default function SingleProduct({ product }: ProductProps) {
     >
       <div className="flex mr-4 w-full sm:w-4/12 justify-center">
         <Image
-          src={product.createProductImageUrl()}
+          src={`/images/${product.slug}.jpg`}
           width={300}
           height={300}
           alt={product.name}
@@ -39,15 +39,15 @@ export default function SingleProduct({ product }: ProductProps) {
         </div>
 
         <div className="flex justify-around w-full text-xl sm:text-sm">
-          <div>
+          <div className="space-y-1">
             <p>Prodajna cena</p>
             <p>Kupovna cena</p>
             <p>Razlika</p>
-            <p>Premija na prodaju</p>
-            <p>Premija na kupovinu</p>
+            <p>Kupovna premija</p>
+            <p>Prodajna premija</p>
           </div>
 
-          <div>
+          <div className="space-y-1">
             <p>{formatPrice(product.priceSell)}</p>
             <p>{formatPrice(product.priceBuy)}</p>
             <p>{formatPrice(product.priceSell - product.priceBuy)}</p>

@@ -14,6 +14,7 @@ import { authConfig } from "./auth.config"
 import sequelize from "./lib/database/sequelize"
 
 import { IUserModel } from "./lib/database/models/User"
+import Password from "./lib/classes/core/Password"
 /**
  * Try to authorize a user.
  */
@@ -40,7 +41,15 @@ export const { auth, signIn, signOut } = NextAuth({
           where: { email }
         })) as IUserModel
 
-        if (!user || !(await user.comparePasswords(password))) {
+        if (!user) {
+          return null
+        }
+
+        const { isMatched } = await new Password(password).comparePasswords(
+          user.password
+        )
+
+        if (!isMatched) {
           return null
         }
 

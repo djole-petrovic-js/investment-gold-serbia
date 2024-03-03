@@ -47,7 +47,7 @@ export default async function PremiumCalculator() {
   const eurToRsdConversionRate = Number(eurToRsdConversionRateString)
 
   return (
-    <div className="text-white bg-black">
+    <main className="main">
       <div className="m-auto w-4/5 py-5">
         <h1 className="text-4xl">Kalkulator premija za investiciono zlato</h1>
 
@@ -82,6 +82,6 @@ export default async function PremiumCalculator() {
 
         <PremiumCalculatorClientComponent spotPriceInRsd={spotPriceInRsd} />
       </div>
-    </div>
+    </main>
   )
 }

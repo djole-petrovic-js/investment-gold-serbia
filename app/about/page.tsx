@@ -19,11 +19,11 @@ export const metadata: Metadata = {
  */
 export default async function About() {
   return (
-    <main className="bg-black">
-      <div className="text-white p-3 w-full md:w-3/4 md:mx-auto">
-        <h1 className="text-3xl mb-4">O nama.</h1>
+    <main className="main">
+      <div className="text-white pt-5 w-full md:w-3/4 md:mx-auto">
+        <h1 className="text-4xl mb-4">O nama</h1>
 
-        <div className="space-y-2">
+        <div className="space-y-2 text-xl">
           <p>
             Sajt postoji sa svrhom da olaksa kupovinu i prodaju zlata u Srbiji,
             pa tako i lakse investiranje kapitala. Ovde mozete naci neke od
