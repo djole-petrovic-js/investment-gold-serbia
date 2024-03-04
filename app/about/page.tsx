@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 export default async function About() {
   return (
     <main className="main">
-      <div className="text-white pt-5 w-full md:w-3/4 md:mx-auto p-5">
+      <div className="text-white pt-5 px-5 w-full md:w-4/5 md:mx-auto">
         <h1 className="mainH1">O nama</h1>
 
         <div className="space-y-5 text-xl">

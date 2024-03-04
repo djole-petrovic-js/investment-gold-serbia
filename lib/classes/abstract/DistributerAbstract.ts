@@ -150,4 +150,12 @@ export default abstract class DistributerAbstract {
       )
     }
   }
+  /**
+   * Get the list of all base products.
+   *
+   * @returns {DistributerProductsType}
+   */
+  public static getAvailableProducts(): DistributerProductsType {
+    return DistributerAbstract.products
+  }
 }

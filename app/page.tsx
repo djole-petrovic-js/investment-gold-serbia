@@ -56,7 +56,7 @@ export default async function Home() {
               <p className="mb-4">Najlikvidnije investiciono zlato.</p>
               <p className="mb-4">
                 Zakonsko sredstvo placanja u zemljama porekla, sa jakim
-                sigurnostnim elementima.
+                sigurnosnim elementima.
               </p>
               <p>Prepoznatljive sirom sveta.</p>
             </h4>
