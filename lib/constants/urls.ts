@@ -1,10 +1,13 @@
 /**
  * Tavex.
  */
+export const tavexMainUrl = "https://tavex.rs"
 export const tavexUrl = "https://tavex.rs/zlato"
 /**
  * GVS Srbija.
  */
+export const gvsMainUrl = "https://www.gvs-srbija.rs"
+
 export const gvsUrls = {
   sellCoins: "https://www.gvs-srbija.rs/kupi/zlatnici.html",
   buyCoins: "https://otkup.gvs-srbija.rs/prodaj/zlatnici.html",

@@ -5,7 +5,13 @@ import type { Metadata } from "next"
 /**
  * Constants.
  */
-import { livePriceOfGold, nbsUrl, projectGithubUrl } from "@/lib/constants/urls"
+import {
+  gvsMainUrl,
+  livePriceOfGold,
+  nbsUrl,
+  projectGithubUrl,
+  tavexMainUrl
+} from "@/lib/constants/urls"
 /**
  * Page metadata
  */
@@ -20,10 +26,10 @@ export const metadata: Metadata = {
 export default async function About() {
   return (
     <main className="main">
-      <div className="text-white pt-5 w-full md:w-3/4 md:mx-auto">
-        <h1 className="text-4xl mb-4">O nama</h1>
+      <div className="text-white pt-5 w-full md:w-3/4 md:mx-auto p-5">
+        <h1 className="mainH1">O nama</h1>
 
-        <div className="space-y-2 text-xl">
+        <div className="space-y-5 text-xl">
           <p>
             Sajt postoji sa svrhom da olaksa kupovinu i prodaju zlata u Srbiji,
             pa tako i lakse investiranje kapitala. Ovde mozete naci neke od
@@ -46,18 +52,14 @@ export default async function About() {
 
             <p>
               Tavex :{" "}
-              <a className="underline" href="https://tavex.rs" target="_blank">
+              <a className="underline" href={tavexMainUrl} target="_blank">
                 link do sajta.
               </a>
             </p>
 
             <p>
               GVS Srbija :{" "}
-              <a
-                className="underline"
-                href="https://gvs-srbija.rs"
-                target="_blank"
-              >
+              <a className="underline" href={gvsMainUrl} target="_blank">
                 link do sajta.
               </a>
             </p>

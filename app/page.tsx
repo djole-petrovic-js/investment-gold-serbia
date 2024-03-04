@@ -66,40 +66,43 @@ export default async function Home() {
       {/* END - Cover photo with short info */}
       {/* BEGIN - Info about gold coins */}
       <div className="text-white p-5">
-        <h1 className="text-5xl mb-5 italic">Zasto kovanice?</h1>
+        <h1 className="mainH1">Zasto kovanice?</h1>
 
-        <p className="text-xl mb-10">
-          Zbog svog kvaliteta izrade, i reputacije proizvodaca, kovanice su
-          priznate sirom sveta, i lako se i kupuju i prodaju, kako kod velikih
-          tako i malih trgovaca investicionim zlatom. Uglavnom zbog svog
-          kvaliteta i estetike su skuplje od poluga, pa im je tako i razlika u
-          prodajnoj i kupovnoj ceni veca.
-        </p>
+        <div className="space-y-5 text-xl">
+          <p>
+            Zbog svog kvaliteta izrade, i reputacije proizvodaca, kovanice su
+            priznate sirom sveta, i lako se i kupuju i prodaju, kako kod velikih
+            tako i malih trgovaca investicionim zlatom. Uglavnom zbog svog
+            kvaliteta i estetike su skuplje od poluga, pa im je tako i razlika u
+            prodajnoj i kupovnoj ceni veca.
+          </p>
 
-        <p className="text-xl mb-10">
-          Kovanice koje izdaju centralne banke suverenih drzava predstavljaju
-          zakonsko sredstvo placanja u toj zemlji. Na kovanicama se nalazi
-          nominalna vrednost izrazena u aktuelnoj valuti. Npr. filhamronija 1
-          unca 100 evra, zlatni orao 100 dolara, i sl. Time su kovanice
-          zasticenim istim zakonima, kojima je zasticen i papirni novac. Samim
-          tim, posledice falsifikovanja su znatno vece. S tim u vezi, kovanice
-          su sticale jake sigurnosne elemente godinama jos od kad se proizvode,
-          npr nazubljene ivice. Danas postoje jos i jace modernije mere, npr
-          Britania hologramski katanac, kanadski javorov list ima mikrotekst na
-          samoj kovanici itd.
-        </p>
+          <p>
+            Kovanice koje izdaju centralne banke suverenih drzava predstavljaju
+            zakonsko sredstvo placanja u toj zemlji. Na kovanicama se nalazi
+            nominalna vrednost izrazena u aktuelnoj valuti. Npr. filhamronija 1
+            unca 100 evra, zlatni orao 100 dolara, i sl. Time su kovanice
+            zasticenim istim zakonima, kojima je zasticen i papirni novac. Samim
+            tim, posledice falsifikovanja su znatno vece. S tim u vezi, kovanice
+            su sticale jake sigurnosne elemente godinama jos od kad se
+            proizvode, npr nazubljene ivice. Danas postoje jos i jace modernije
+            mere, npr Britania hologramski katanac, kanadski javorov list ima
+            mikrotekst na samoj kovanici itd.
+          </p>
 
-        <p className="text-xl mb-10">
-          Proizvode se dugi niz godina, npr. Juznoafricki Krugerand jos od 1967,
-          Sto ih cini prepoznatljivim, lakim za testiranje, i samim tim i laksim
-          za investiranje. Posto se dugo proizvode pod istim standardima, ocuvan
-          je integritet svih kovanica, pa je i lako utvrditi validnost.
-        </p>
+          <p>
+            Proizvode se dugi niz godina, npr. Juznoafricki Krugerand jos od
+            1967, Sto ih cini prepoznatljivim, lakim za testiranje, i samim tim
+            i laksim za investiranje. Posto se dugo proizvode pod istim
+            standardima, ocuvan je integritet svih kovanica, pa je i lako
+            utvrditi validnost.
+          </p>
 
-        <p className="text-xl">
-          Pogledajte ponudu najboljih distributera investicionog zlata u srbiji
-          ispod.
-        </p>
+          <p>
+            Pogledajte ponudu istaknutih distributera investicionog zlata u
+            srbiji ispod.
+          </p>
+        </div>
       </div>
       {/* END - Info about gold coins */}
       <DistributersListing distributers={distributers} />

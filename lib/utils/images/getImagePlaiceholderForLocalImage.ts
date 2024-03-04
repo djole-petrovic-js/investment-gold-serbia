@@ -4,7 +4,7 @@
 import fs from "node:fs/promises"
 import { getPlaiceholder } from "plaiceholder"
 /**
- *
+ * When using Next.js Image component, use this to create the blur temp image.
  *
  * @param {String} localImageUrl
  *

@@ -28,20 +28,17 @@ export const metadata: Metadata = {
  */
 export default async function PremiumCalculator() {
   const variables = (await Promise.all([
-    sequelize.models.Variable.findOne({ where: { key: "SPOT_PRICE_IN_RSD" } }),
     sequelize.models.Variable.findOne({
-      where: { key: "EUR_TO_RSD_CONVERTION_RATE" }
+      where: { key: "SPOT_PRICE_IN_RSD" }
     }),
     sequelize.models.Variable.findOne({
-      where: { key: "DATA_UPDATED_TIMESTAMP" }
+      where: { key: "EUR_TO_RSD_CONVERTION_RATE" }
     })
   ])) as IVariableModel[]
 
-  const [
-    spotPriceInRsdString,
-    eurToRsdConversionRateString,
-    dataUpdatedTimestamp
-  ] = variables.map(({ value }) => value)
+  const [spotPriceInRsdString, eurToRsdConversionRateString] = variables.map(
+    ({ value }) => value
+  )
 
   const spotPriceInRsd = Number(spotPriceInRsdString)
   const eurToRsdConversionRate = Number(eurToRsdConversionRateString)
@@ -49,36 +46,36 @@ export default async function PremiumCalculator() {
   return (
     <main className="main">
       <div className="m-auto w-4/5 py-5">
-        <h1 className="text-4xl">Kalkulator premija za investiciono zlato</h1>
+        <h1 className="mainH1">Kalkulator premija za investiciono zlato</h1>
 
-        <div className="my-4">
-          <p>
-            Izracunajte koliko bi vas kostali zlatni investicioni proizvodi, u
-            odnosu na berzansku cenu zlata.
-          </p>
-          <p>
-            Premija je podrazumevani element kad je kupovina u pitanju, ali ne
-            treba da bude prevelika. Neke od postojecih su:
-          </p>
+        <div className="space-y-5 text-xl">
+          <div className="space-y-1">
+            <p>
+              Izracunajte koliko bi vas kostali zlatni investicioni proizvodi, u
+              odnosu na berzansku cenu zlata.
+            </p>
+            <p>
+              Premija je podrazumevani element kad je kupovina u pitanju, ali ne
+              treba da bude prevelika. Neke od postojecih su:
+            </p>
+          </div>
+
+          <div className="italic">
+            <p>Becka filharmonija 1oz (31.1gr) zlatnik - Oko 5 %</p>
+            <p>Becka filharmonija 1/4oz (7.8gr) zlatnik - Oko 12 %</p>
+          </div>
+
+          <div>
+            <p>
+              Trenutna cena zlata za jednu uncu :{" "}
+              {formatPrice(Number(spotPriceInRsd))}
+            </p>
+          </div>
+
+          <div>
+            <p>Trenutni kurs eura : {formatPrice(eurToRsdConversionRate)}</p>
+          </div>
         </div>
-
-        <div className="my-4">
-          <p className="italic">
-            Becka filharmonija 1oz (31.1gr) zlatnik - Oko 5 %
-          </p>
-          <p className="italic">
-            Becka filharmonija 1/4oz (7.8gr) zlatnik - Oko 12 %
-          </p>
-        </div>
-
-        <p>Podaci azurirani : {dataUpdatedTimestamp}</p>
-
-        <p>
-          Trenutna cena zlata za jednu uncu :{" "}
-          {formatPrice(Number(spotPriceInRsd))}
-        </p>
-
-        <p>Trenutni kurs eura : {formatPrice(eurToRsdConversionRate)}</p>
 
         <PremiumCalculatorClientComponent spotPriceInRsd={spotPriceInRsd} />
       </div>
