@@ -93,10 +93,10 @@ export async function GET() {
     })
   ])
 
-  revalidatePath("/", "page")
-  revalidatePath("/gold-bars")
+  revalidatePath("/", "layout")
+  revalidatePath("/gold-bars", "layout")
   revalidatePath("/premium-calculator")
-  revalidatePath("/trade/[[...productSlug]]")
+  revalidatePath("/trade/[[...productSlug]]", "layout")
   revalidatePath("/about")
 
   timer.end()
