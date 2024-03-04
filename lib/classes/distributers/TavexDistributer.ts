@@ -10,7 +10,7 @@ import fetchAndInitCheerio from "@/lib/utils/http/fetchAndInitCheerio"
 /**
  * Constants
  */
-import { tavexUrl } from "@/lib/constants/urls"
+import { tavexMainUrl, tavexUrl } from "@/lib/constants/urls"
 import { IProductModel } from "@/lib/database/models/Product"
 /**
  * Class for managing the Tavex distributer.
@@ -23,6 +23,7 @@ export default class TavexDistributer extends Distributer {
   constructor({ spotPriceInRsd }: { spotPriceInRsd: number }) {
     super({
       name: "Tavex",
+      homeUrl: tavexMainUrl,
       spotPriceInRsd
     })
   }

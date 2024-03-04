@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 /**
- * Handle mobile menu.
+ * Mobile menu.
  */
 export default function Hamburger() {
   const [showMenu, setShowMenu] = useState<boolean>(false)
@@ -56,12 +56,12 @@ export default function Hamburger() {
 
           <Link href="/gold-bars">Poluge</Link>
 
-          <Link href="/premium-calculator" prefetch={false}>
-            Kalkulator Premija
-          </Link>
-
           <Link href="/trade" prefetch={false}>
             Trgovina
+          </Link>
+
+          <Link href="/premium-calculator" prefetch={false}>
+            Kalkulator Premija
           </Link>
 
           <Link href="/about" prefetch={false}>
