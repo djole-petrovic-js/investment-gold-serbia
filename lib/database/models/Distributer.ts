@@ -5,6 +5,7 @@
   create table Distributers (
     id int(10) unsigned not null AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    homeUrl VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL UNIQUE,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,6 +37,7 @@ export interface IDistributerModel
    */
   id: CreationOptional<number>
   name: string
+  homeUrl: string
   slug: string
   Products?: IProductModel[]
 }
@@ -59,6 +61,10 @@ export default function DistributerModelInit(sequelize: Sequelize): void {
         primaryKey: true
       },
       name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      homeUrl: {
         type: DataTypes.STRING,
         allowNull: false
       },

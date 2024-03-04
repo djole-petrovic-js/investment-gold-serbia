@@ -10,7 +10,7 @@ import fetchAndInitCheerio from "@/lib/utils/http/fetchAndInitCheerio"
 /**
  * Constants
  */
-import { gvsUrls } from "@/lib/constants/urls"
+import { gvsMainUrl, gvsUrls } from "@/lib/constants/urls"
 import { IProductModel } from "@/lib/database/models/Product"
 /**
  * Class for managing the GVS Srbija distributer.
@@ -22,6 +22,7 @@ export default class GVSDistributer extends Distributer {
   constructor({ spotPriceInRsd }: { spotPriceInRsd: number }) {
     super({
       name: "GVS Srbija",
+      homeUrl: gvsMainUrl,
       spotPriceInRsd
     })
   }

@@ -19,6 +19,7 @@ export default abstract class DistributerAbstract {
   protected fetchedProducts: IProductModel[] = []
 
   protected name: string
+  protected homeUrl: string
   protected spotPriceInRsd: number
 
   protected static products: DistributerProductsType = {
@@ -92,12 +93,15 @@ export default abstract class DistributerAbstract {
    */
   constructor({
     name,
+    homeUrl,
     spotPriceInRsd
   }: {
     name: string
+    homeUrl: string
     spotPriceInRsd: number
   }) {
     this.name = name
+    this.homeUrl = homeUrl
     this.spotPriceInRsd = spotPriceInRsd
   }
   /**
@@ -117,8 +121,9 @@ export default abstract class DistributerAbstract {
     const findResult = await sequelize.models.Distributer.findOrCreate({
       where: { slug },
       defaults: {
-        slug,
-        name: this.name
+        name: this.name,
+        homeUrl: this.homeUrl,
+        slug
       }
     })
 

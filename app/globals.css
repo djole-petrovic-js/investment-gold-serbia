@@ -3,6 +3,10 @@
 @import "tailwindcss/utilities";
 
 @layer components {
+  .main {
+    @apply bg-black text-white pt-24;
+  }
+
   .disabled {
     /* opacity: theme("opacity.50"); */
     /* background-color: theme("backgroundColor.gray.300"); */
@@ -10,7 +14,12 @@
     @apply bg-gray-300 opacity-50 cursor-not-allowed;
   }
 
-  .main {
-    @apply bg-black text-white pt-16;
+  /* Desktop links */
+  .lgScreenNavLink {
+    @apply hover:bg-black hover:text-white py-3 px-3 rounded-md;
+  }
+  /* Main H1 Styles*/
+  .mainH1 {
+    @apply text-5xl mb-5 italic;
   }
 }
