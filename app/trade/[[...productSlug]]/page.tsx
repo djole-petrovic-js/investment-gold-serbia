@@ -1,11 +1,35 @@
 /**
+ * App Core.
+ */
+import DistributerAbstract from "@/lib/classes/abstract/DistributerAbstract"
+/**
  * Components.
  */
 import TradeClientUi from "@/app/trade/[[...productSlug]]/components/TradeClientUi"
 /**
+ * Types
+ */
+import { DistributerProductsType } from "@/lib/types/distributerData"
+/**
  * Utils.
  */
 import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
+/**
+ * Generate an initial static page for each product slug.
+ */
+export async function generateStaticParams() {
+  const productsSlugs: string[] = []
+  const availableProducts: DistributerProductsType =
+    DistributerAbstract.getAvailableProducts()
+
+  Object.keys(availableProducts).forEach((key) =>
+    productsSlugs.push(...availableProducts[key].map((x) => x.identifier))
+  )
+
+  return productsSlugs.map((slug: string) => ({
+    slug
+  }))
+}
 /**
  * Page for helping users to find the best prices for a product they want to buy.
  */

@@ -45,7 +45,7 @@ export default async function PremiumCalculator() {
 
   return (
     <main className="main">
-      <div className="m-auto w-4/5 py-5">
+      <div className="m-auto w-full md:w-4/5 p-5">
         <h1 className="mainH1">Kalkulator premija za investiciono zlato</h1>
 
         <div className="space-y-5 text-xl">
