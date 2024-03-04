@@ -93,9 +93,10 @@ export async function GET() {
     })
   ])
 
-  revalidatePath("/")
+  revalidatePath("/", "page")
   revalidatePath("/gold-bars")
   revalidatePath("/premium-calculator")
+  revalidatePath("/trad/[[...productSlug]]")
   revalidatePath("/about")
 
   timer.end()
