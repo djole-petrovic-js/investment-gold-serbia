@@ -96,7 +96,7 @@ export async function GET() {
   revalidatePath("/", "page")
   revalidatePath("/gold-bars")
   revalidatePath("/premium-calculator")
-  revalidatePath("/trad/[[...productSlug]]")
+  revalidatePath("/trade/[[...productSlug]]")
   revalidatePath("/about")
 
   timer.end()
