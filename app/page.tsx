@@ -4,6 +4,10 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 /**
+ * Environment.
+ */
+import { GOOGLE_SITE_VERIFICATION } from "@/lib/constants/environment"
+/**
  * Components.
  */
 import DistributersListing from "@/lib/components/distributers/DistributersListing"
@@ -22,7 +26,10 @@ import goldCoinsCoverImage from "@/public/images/gold-coins.jpg"
 export const metadata: Metadata = {
   title: "IZS - Kovanice",
   description: "Investiciono Zlato Srbija - Kovanice",
-  keywords: ["zlato", "investiranje", "kovanice"]
+  keywords: ["zlato", "investiranje", "kovanice"],
+  other: {
+    "google-site-verification": GOOGLE_SITE_VERIFICATION
+  }
 }
 /**
  * Display all coins from recommended distributers.
