@@ -3,6 +3,10 @@
  */
 import { Metadata } from "next"
 /**
+ * Components.
+ */
+import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
+/**
  * Database.
  */
 import sequelize from "@/lib/database/sequelize"
@@ -79,6 +83,8 @@ export default async function PremiumCalculator() {
 
         <PremiumCalculatorClientComponent spotPriceInRsd={spotPriceInRsd} />
       </div>
+
+      <GoogleAnalytics />
     </main>
   )
 }

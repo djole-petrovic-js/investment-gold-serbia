@@ -11,6 +11,7 @@ import { GOOGLE_SITE_VERIFICATION } from "@/lib/constants/environment"
  * Components.
  */
 import DistributersListing from "@/lib/components/distributers/DistributersListing"
+import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
  * Utils.
  */
@@ -113,6 +114,7 @@ export default async function Home() {
       </div>
       {/* END - Info about gold coins */}
       <DistributersListing distributers={distributers} />
+      <GoogleAnalytics />
     </main>
   )
 }

@@ -3,6 +3,10 @@
  */
 import type { Metadata } from "next"
 /**
+ * Components.
+ */
+import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
+/**
  * Constants.
  */
 import {
@@ -87,6 +91,8 @@ export default async function About() {
           </div>
         </div>
       </div>
+
+      <GoogleAnalytics />
     </main>
   )
 }

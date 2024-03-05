@@ -31,3 +31,9 @@ export const API_TOKEN: string = process.env.API_TOKEN || ""
  */
 export const GOOGLE_SITE_VERIFICATION: string =
   process.env.GOOGLE_SITE_VERIFICATION || ""
+
+/**
+ * Token used to make API requests, outside of the App.
+ */
+export const GOOGLE_ANALYTICS: string =
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || ""
