@@ -26,3 +26,8 @@ export const IS_DEV_ENV: boolean = SITE_BASE_URL.includes("localhost")
  * Token used to make API requests, outside of the App.
  */
 export const API_TOKEN: string = process.env.API_TOKEN || ""
+/**
+ * Google search console verification.
+ */
+export const GOOGLE_SITE_VERIFICATION: string =
+  process.env.GOOGLE_SITE_VERIFICATION || ""
