@@ -10,25 +10,45 @@ import TradeClientUi from "@/app/trade/[[...productSlug]]/components/TradeClient
  * Types
  */
 import { DistributerProductsType } from "@/lib/types/distributerData"
+import { PageContextType } from "@/lib/types/pageContext"
 /**
  * Utils.
  */
 import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
+import createTradeTitle from "@/app/trade/[[...productSlug]]/utils/createTradeTitle"
 /**
  * Generate an initial static page for each product slug.
  */
 export async function generateStaticParams() {
   const productsSlugs: string[] = []
+
   const availableProducts: DistributerProductsType =
     DistributerAbstract.getAvailableProducts()
 
   Object.keys(availableProducts).forEach((key) =>
-    productsSlugs.push(...availableProducts[key].map((x) => x.identifier))
+    productsSlugs.push(
+      ...availableProducts[key].map((product) => product.identifier)
+    )
   )
 
   return productsSlugs.map((slug: string) => ({
     slug
   }))
+}
+/**
+ *
+ * Dynamically create the page's metadata, based on the product selected.
+ *
+ * @param {PageContextType} context
+ *
+ * @returns {Metadata}
+ */
+export async function generateMetadata(context: PageContextType) {
+  return {
+    title: createTradeTitle(context),
+    description: "Trgovina investicionim zlatom",
+    keywords: ["trgovina", "proizvodi", "zlato", "investiranje"]
+  }
 }
 /**
  * Page for helping users to find the best prices for a product they want to buy.
