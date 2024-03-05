@@ -7,6 +7,10 @@ import { MetadataRoute } from "next"
  */
 import { SITE_BASE_URL } from "@/lib/constants/environment"
 /**
+ * Utils.
+ */
+import getBaseProductsSlugs from "@/lib/utils/getBaseProductsSlugs"
+/**
  * Serve the static sitemap.xml file.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -29,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "hourly",
       priority: 0.9
     },
+    ...getBaseProductsSlugs().map((slug: string) => ({
+      url: `${SITE_BASE_URL}/trade/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "hourly",
+      priority: 0.9
+    })),
     {
       url: `${SITE_BASE_URL}/premium-calculator`,
       lastModified: new Date(),
@@ -41,5 +51,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.5
     }
-  ]
+  ] as MetadataRoute.Sitemap
 }
