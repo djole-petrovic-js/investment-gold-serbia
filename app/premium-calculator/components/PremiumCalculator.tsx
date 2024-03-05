@@ -1,29 +1,32 @@
-'use client';
+"use client"
 /**
  * Next.js core
  */
-import { useState } from "react";
+import { useState } from "react"
 /**
  * Utils
  */
-import calculatePremium  from "@/lib/utils/numbers/calculatePremium";
-import formatPercentage from "@/lib/utils/numbers/formatPercentage";
+import calculatePremium from "@/lib/utils/numbers/calculatePremium"
+import formatPercentage from "@/lib/utils/numbers/formatPercentage"
 /**
  * Props
  */
 type PremiumCalculatorProps = {
-  spotPriceInRsd: number,
+  spotPriceInRsd: number
 }
 /**
  * Client component, for calculating gold premiums.
  */
-export default function PremiumCalculator({ spotPriceInRsd } : PremiumCalculatorProps) {
-  const [weightInGrams, setWeightInGrams] = useState(0);
-  const [paidPrice, setPaidPrice] = useState(0);
+export default function PremiumCalculator({
+  spotPriceInRsd
+}: PremiumCalculatorProps) {
+  const [weightInGrams, setWeightInGrams] = useState(0)
+  const [paidPrice, setPaidPrice] = useState(0)
 
-  const premium = weightInGrams > 0 && paidPrice > 0
-    ? calculatePremium(paidPrice, weightInGrams / 31.1, spotPriceInRsd)
-    : 0;
+  const premium =
+    weightInGrams > 0 && paidPrice > 0
+      ? calculatePremium(paidPrice, weightInGrams / 31.1, spotPriceInRsd)
+      : 0
 
   return (
     <div className="m-auto w-100 lg:w-1/2 sm:w-100">
@@ -37,7 +40,7 @@ export default function PremiumCalculator({ spotPriceInRsd } : PremiumCalculator
 
           <div>
             <input
-              onChange={(event) => setWeightInGrams(Number(event.target.value)) }
+              onChange={(event) => setWeightInGrams(Number(event.target.value))}
               className="appearance-none bg-transparent border-b w-full text-yellow-50 mr-3 text-right focus:outline-none"
               type="text"
               placeholder="31.1"
@@ -52,7 +55,7 @@ export default function PremiumCalculator({ spotPriceInRsd } : PremiumCalculator
 
           <div>
             <input
-              onChange={(event) => setPaidPrice(Number(event.target.value)) }
+              onChange={(event) => setPaidPrice(Number(event.target.value))}
               className="appearance-none bg-transparent border-b w-full text-yellow-50 mr-3 text-right focus:outline-none"
               type="text"
               placeholder={spotPriceInRsd.toFixed(2)}
@@ -66,7 +69,7 @@ export default function PremiumCalculator({ spotPriceInRsd } : PremiumCalculator
           </div>
 
           <div>
-            <span>{premium !== 0 ? formatPercentage(premium) : '0%'}</span>
+            <span>{premium !== 0 ? formatPercentage(premium) : "0%"}</span>
           </div>
         </div>
       </div>

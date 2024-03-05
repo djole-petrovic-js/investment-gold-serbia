@@ -2,6 +2,7 @@
  * Components.
  */
 import TradeClientUi from "@/app/trade/[[...productSlug]]/components/TradeClientUi"
+import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
  * Types
  */
@@ -67,6 +68,8 @@ export default async function Trade() {
 
         <TradeClientUi distributers={distributers} />
       </div>
+
+      <GoogleAnalytics />
     </main>
   )
 }

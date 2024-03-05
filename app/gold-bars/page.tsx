@@ -7,6 +7,7 @@ import Image from "next/image"
  * Components
  */
 import DistributersListing from "@/lib/components/distributers/DistributersListing"
+import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
  * Utils.
  */
@@ -98,6 +99,7 @@ export default async function GoldBars() {
       </div>
       {/* BEGIN - Info about gold bars */}
       <DistributersListing distributers={distributers} />
+      <GoogleAnalytics />
     </main>
   )
 }
