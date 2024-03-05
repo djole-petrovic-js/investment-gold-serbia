@@ -1,4 +1,6 @@
-export const baseProducts = {
+import { DistributerProductsType } from "@/lib/types/distributerData"
+
+export const baseProducts: DistributerProductsType = {
   COINS: [
     {
       name: "Becka filharmonija 1 oz",
