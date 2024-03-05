@@ -1,37 +1,22 @@
 /**
- * App Core.
- */
-import DistributerAbstract from "@/lib/classes/abstract/DistributerAbstract"
-/**
  * Components.
  */
 import TradeClientUi from "@/app/trade/[[...productSlug]]/components/TradeClientUi"
 /**
  * Types
  */
-import { DistributerProductsType } from "@/lib/types/distributerData"
 import { PageContextType } from "@/lib/types/pageContext"
 /**
  * Utils.
  */
 import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
 import createTradeTitle from "@/app/trade/[[...productSlug]]/utils/createTradeTitle"
+import getBaseProductsSlugs from "@/lib/utils/getBaseProductsSlugs"
 /**
  * Generate an initial static page for each product slug.
  */
 export async function generateStaticParams() {
-  const productsSlugs: string[] = []
-
-  const availableProducts: DistributerProductsType =
-    DistributerAbstract.getAvailableProducts()
-
-  Object.keys(availableProducts).forEach((key) =>
-    productsSlugs.push(
-      ...availableProducts[key].map((product) => product.identifier)
-    )
-  )
-
-  return productsSlugs.map((slug: string) => ({
+  return getBaseProductsSlugs().map((slug: string) => ({
     slug
   }))
 }
