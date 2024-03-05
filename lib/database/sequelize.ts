@@ -27,7 +27,13 @@ const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
   logging: IS_DEV_ENV ? console.log : false,
   host: DB_HOST,
   dialect: "mysql",
-  dialectModule: mysql2
+  dialectModule: mysql2,
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
 })
 /**
  * Code bellow is used basically to associate models, since they are not in the same files.

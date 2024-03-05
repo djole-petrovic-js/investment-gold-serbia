@@ -17,6 +17,7 @@ export default async function fetchDistributersByProductTypes(
 
   const distributers = (
     await sequelize.models.Distributer.findAll({
+      order: [[sequelize.col("Products.id"), "ASC"]],
       include: [
         {
           model: sequelize.models.Product,
