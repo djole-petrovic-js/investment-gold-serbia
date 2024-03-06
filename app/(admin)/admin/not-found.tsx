@@ -12,7 +12,10 @@ export default function NotFound() {
       <h1 className="text-3xl mb-5">404 | Stranica nije pronadjena</h1>
 
       <h2 className="text-2xl">
-        Ova stranica vise ne postoji. Vratite se na pocetak <Link className="underline" href="/">ovde</Link>
+        Ova stranica vise ne postoji. Vratite se na pocetak{" "}
+        <Link className="underline" href="/">
+          ovde
+        </Link>
       </h2>
     </div>
   )

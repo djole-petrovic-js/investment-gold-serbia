@@ -2,20 +2,21 @@
 /**
  * Next.js core
  */
-import { useFormState, useFormStatus } from "react-dom"
+import { useFormState } from "react-dom"
 /**
  * Actions
  */
-import authenticate from "@/app/login/actions/authenticate"
+import authenticate from "@/app/(client)/login/actions/authenticate"
+import LoginSubmitButton from "./LoginSubmitButton"
 /**
  * Login page.
  */
+
 export default function LoginForm() {
-  const { pending } = useFormStatus()
   const [errorMessage, dispatch] = useFormState(authenticate, undefined)
 
   return (
-    <form action={dispatch} className="w-1/3">
+    <form action={dispatch} className="w-5/6 sm:w-4/6 lg:w-1/3">
       <div className="mb-5">
         <h3 className="text-center text-2xl">Prijava na sistem</h3>
       </div>
@@ -39,13 +40,7 @@ export default function LoginForm() {
       </div>
 
       <div className="text-center">
-        <button
-          type="submit"
-          className="mt-4 border border-white rounded-sm px-5 py-2 mx-auto"
-          aria-disabled={pending}
-        >
-          Log in
-        </button>
+        <LoginSubmitButton />
 
         {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
       </div>

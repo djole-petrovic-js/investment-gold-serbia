@@ -96,6 +96,11 @@ export default abstract class DistributerAbstract {
       )
     }
   }
+
+  protected raiseProductScapingException(message: string, identifier: string) {
+    throw new Error(`${message} ${this.name} ${identifier}`)
+  }
+
   /**
    * Get the list of all base products.
    *

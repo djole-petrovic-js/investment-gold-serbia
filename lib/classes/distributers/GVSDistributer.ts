@@ -160,11 +160,17 @@ export default class GVSDistributer extends Distributer {
          * All other selectors should work fine, if the price is found.
          */
         if (!priceSell) {
-          throw new Error("Price sell was empty!")
+          this.raiseProductScapingException(
+            "Price sell was empty!",
+            product.identifier
+          )
         }
 
         if (!priceBuy) {
-          throw new Error("Price sell was empty!")
+          this.raiseProductScapingException(
+            "Price buy was empty!",
+            product.identifier
+          )
         }
 
         const urlSell = cheerioSell(priceSellSelector)

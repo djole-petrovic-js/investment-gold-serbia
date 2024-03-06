@@ -1,0 +1,6 @@
+/* 
+  Deskop Menu Styles.
+*/
+.lgScreenNavLink {
+  @apply hover:bg-black hover:text-white py-3 px-3 rounded-md;
+}
