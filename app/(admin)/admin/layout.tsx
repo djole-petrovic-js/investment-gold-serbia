@@ -30,8 +30,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <nav className="flex flex-col">
               <a href="/">Home</a>
 
-              <Link href="/admin/dashboard">Dashboard</Link>
-              <Link href="/admin/users">Users</Link>
+              <Link href="/admin/dashboard" prefetch={false}>
+                Dashboard
+              </Link>
+
+              <Link href="/admin/users" prefetch={false}>
+                Users
+              </Link>
 
               <form action={logOut}>
                 <button>Log out</button>
