@@ -8,6 +8,10 @@ import Image from "next/image"
  */
 import logoImg from "@/public/images/logo.png"
 /**
+ * Styles.
+ */
+import styles from "./style.module.css"
+/**
  * Desktop Menu.
  */
 export default function DesktopMenu() {
@@ -26,27 +30,27 @@ export default function DesktopMenu() {
       </div>
 
       <div className="hidden md:flex md:items-center">
-        <Link className="lgScreenNavLink" href="/">
+        <Link className={styles.lgScreenNavLink} href="/">
           Kovanice
         </Link>
 
-        <Link className="lgScreenNavLink" href="/gold-bars">
+        <Link className={styles.lgScreenNavLink} href="/gold-bars">
           Poluge
         </Link>
 
-        <Link className="lgScreenNavLink" href="/trade" prefetch={false}>
+        <Link className={styles.lgScreenNavLink} href="/trade" prefetch={false}>
           Trgovina
         </Link>
 
         <Link
-          className="lgScreenNavLink"
+          className={styles.lgScreenNavLink}
           href="/premium-calculator"
           prefetch={false}
         >
           Kalkulator Premija
         </Link>
 
-        <Link className="lgScreenNavLink" href="/about" prefetch={false}>
+        <Link className={styles.lgScreenNavLink} href="/about" prefetch={false}>
           O nama
         </Link>
       </div>

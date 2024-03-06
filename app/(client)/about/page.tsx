@@ -17,7 +17,7 @@ import {
   tavexMainUrl
 } from "@/lib/constants/urls"
 /**
- * Page metadata
+ * Page metadata.
  */
 export const metadata: Metadata = {
   title: "IZS - O nama",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   keywords: ["informacije", "zlato", "investiranje"]
 }
 /**
- * About page
+ * About page.
  */
 export default async function About() {
   return (

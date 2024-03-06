@@ -2,7 +2,7 @@
  * Next.js
  */
 import { Metadata } from "next"
-import RefreshProducts from "./components/RefreshProducts"
+import RefreshProducts from "@/app/(admin)/admin/dashboard/components/RefreshProducts"
 /**
  * Page metadata
  */
@@ -10,10 +10,6 @@ export const metadata: Metadata = {
   title: "IZS - Dashboard",
   description: "Investiciono Zlato Srbija - Dashboard"
 }
-/**
- * This route should not be cached.
- */
-export const revalidate = 0
 /**
  * Admin Dashboard page
  */

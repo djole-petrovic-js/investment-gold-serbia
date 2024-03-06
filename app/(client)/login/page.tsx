@@ -10,7 +10,7 @@ import { auth } from "@/auth"
 /**
  * Components.
  */
-import LoginForm from "@/app/login/components/LoginForm"
+import LoginForm from "@/app/(client)/login/components/LoginForm/LoginForm"
 /**
  * Page metadata.
  */
@@ -35,8 +35,10 @@ export default async function Login() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center bg-black text-white h-screen">
-      <LoginForm />
-    </div>
+    <main className="main">
+      <div className="flex flex-col items-center justify-center bg-black text-white h-screen">
+        <LoginForm />
+      </div>
+    </main>
   )
 }

@@ -14,7 +14,7 @@ import { IVariableModel } from "@/lib/database/models/Variable"
 /**
  * UI Components.
  */
-import PremiumCalculatorClientComponent from "@/app/premium-calculator/components/PremiumCalculator"
+import PremiumCalculatorClientComponent from "@/app/(client)/premium-calculator/components/PremiumCalculator"
 /**
  * Utils
  */

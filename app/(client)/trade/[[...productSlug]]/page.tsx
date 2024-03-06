@@ -1,7 +1,7 @@
 /**
  * Components.
  */
-import TradeClientUi from "@/app/trade/[[...productSlug]]/components/TradeClientUi"
+import TradeClientUi from "@/app/(client)/trade/[[...productSlug]]/components/TradeClientUi"
 import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
  * Types
@@ -11,7 +11,7 @@ import { PageContextType } from "@/lib/types/pageContext"
  * Utils.
  */
 import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
-import createTradeTitle from "@/app/trade/[[...productSlug]]/utils/createTradeTitle"
+import createTradeTitle from "@/app/(client)/trade/[[...productSlug]]/utils/createTradeTitle"
 import getBaseProductsSlugs from "@/lib/utils/getBaseProductsSlugs"
 /**
  * Generate an initial static page for each product slug.
