@@ -14,10 +14,6 @@
     @apply bg-gray-300 opacity-50 cursor-not-allowed;
   }
 
-  /* Desktop links */
-  .lgScreenNavLink {
-    @apply hover:bg-black hover:text-white py-3 px-3 rounded-md;
-  }
   /* Main H1 Styles*/
   .mainH1 {
     @apply text-5xl mb-5 italic;

@@ -7,7 +7,7 @@ import { useState } from "react"
 /**
  * Components
  */
-import BestDeals from "@/app/trade/[[...productSlug]]/components/BestDeals"
+import BestDeals from "@/app/(client)/trade/[[...productSlug]]/components/BestDeals"
 /**
  * Database.
  */

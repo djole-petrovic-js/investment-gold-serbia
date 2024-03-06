@@ -94,10 +94,6 @@ export async function GET() {
   ])
 
   revalidatePath("/", "layout")
-  revalidatePath("/gold-bars", "layout")
-  revalidatePath("/premium-calculator", "layout")
-  revalidatePath("/trade/[[...productSlug]]", "layout")
-  revalidatePath("/about", "layout")
 
   timer.end()
 
