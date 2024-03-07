@@ -37,18 +37,22 @@ export const metadata: Metadata = {
  */
 export const dynamic = "force-dynamic"
 
-import { unstable_cache as cache } from 'next/cache';
+import { unstable_cache as cache } from "next/cache"
 
-const fetchProductsHome = cache(async () => {
-  return fetchDistributersByProductTypes(["COINS"])
-}, ['Home::fetch'], {
-  tags: ['client-side-data']
-})
+const fetchProductsHome = cache(
+  async () => {
+    return fetchDistributersByProductTypes(["COINS"])
+  },
+  ["Home::fetch"],
+  {
+    tags: ["client-side-data"]
+  }
+)
 /**
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  const distributers = await fetchProductsHome();
+  const distributers = await fetchProductsHome()
 
   return (
     <main className="main">

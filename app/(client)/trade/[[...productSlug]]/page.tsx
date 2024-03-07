@@ -12,15 +12,22 @@ import { PageContextType } from "@/lib/types/pageContext"
  */
 import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
 import createTradeTitle from "@/app/(client)/trade/[[...productSlug]]/utils/createTradeTitle"
-import getBaseProductsSlugs from "@/lib/utils/getBaseProductsSlugs"
 /**
- * Generate an initial static page for each product slug.
+ * To keep the view data fresh.
  */
-export async function generateStaticParams() {
-  return getBaseProductsSlugs().map((slug: string) => ({
-    slug
-  }))
-}
+export const dynamic = "force-dynamic"
+
+import { unstable_cache as cache } from "next/cache"
+
+const fetchProductsTrade = cache(
+  async () => {
+    return fetchDistributersByProductTypes(["COINS"])
+  },
+  ["Trade::fetch"],
+  {
+    tags: ["client-side-data"]
+  }
+)
 /**
  *
  * Dynamically create the page's metadata, based on the product selected.
@@ -40,7 +47,7 @@ export async function generateMetadata(context: PageContextType) {
  * Page for helping users to find the best prices for a product they want to buy.
  */
 export default async function Trade() {
-  const distributers = await fetchDistributersByProductTypes([])
+  const distributers = await fetchProductsTrade()
 
   return (
     <main className="main">
