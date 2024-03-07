@@ -1,8 +1,7 @@
 /**
  * Next.js core.
  */
-import { NextResponse } from "next/server"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
 /**
  * App core.
  */
@@ -93,11 +92,12 @@ export async function GET() {
     })
   ])
 
-  revalidatePath("/", "layout")
+  // revalidatePath("/", "layout")
+  revalidateTag('client-side-data');
 
   timer.end()
 
-  return NextResponse.json({
+  return Response.json({
     success: true,
     timePassedInSeconds: timer.geTimePassedInSeconds()
   })
