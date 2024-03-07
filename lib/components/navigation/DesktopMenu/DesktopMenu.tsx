@@ -50,7 +50,7 @@ export default function DesktopMenu() {
           Kalkulator Premija
         </Link>
 
-        <Link className={styles.lgScreenNavLink} href="/about" prefetch={false}>
+        <Link className={styles.lgScreenNavLink} href="/about">
           O nama
         </Link>
       </div>

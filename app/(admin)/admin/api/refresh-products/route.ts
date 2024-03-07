@@ -1,7 +1,7 @@
 /**
  * Next.js core.
  */
-import { revalidatePath, revalidateTag } from "next/cache"
+import { revalidateTag } from "next/cache"
 /**
  * App core.
  */
@@ -92,8 +92,7 @@ export async function GET() {
     })
   ])
 
-  // revalidatePath("/", "layout")
-  revalidateTag('client-side-data');
+  revalidateTag("client-side-data")
 
   timer.end()
 

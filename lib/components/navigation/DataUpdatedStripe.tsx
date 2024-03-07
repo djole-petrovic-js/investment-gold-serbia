@@ -1,33 +1,18 @@
 /**
- * Database.
+ * Providers.
  */
-import sequelize from "@/lib/database/sequelize"
-import { IVariableModel } from "@/lib/database/models/Variable"
-
-import { unstable_cache as cache } from 'next/cache';
-
-const fetchProductsDataUpdatedStripe = cache(async () => {
-  return (await sequelize.models.Variable.findOne({
-    where: { key: "DATA_UPDATED_TIMESTAMP" }
-  })) as IVariableModel
-}, ['DataUpdatedStripe::fetch'], {
-  tags: ['client-side-data']
-})
-
+import variablesProvider from "@/lib/providers/variables/provider"
 /**
  * Display the time when the prices data was last updated.
  */
 export default async function DataUpdatedStripe() {
-  const dataUpdatedTimestamp = await fetchProductsDataUpdatedStripe();
-
-  if (!dataUpdatedTimestamp) {
-    return null
-  }
+  const dataUpdatedTimestamp = (await variablesProvider())
+    .DATA_UPDATED_TIMESTAMP
 
   return (
     <div className="w-full bg-black text-white border-b-white border-b">
       <p className="text-center text-lg">
-        Cene azurirane : {dataUpdatedTimestamp.value.split(" ")[1]}
+        Cene azurirane : {dataUpdatedTimestamp.split(" ")[1]}
       </p>
     </div>
   )

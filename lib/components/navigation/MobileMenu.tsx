@@ -52,9 +52,13 @@ export default function Hamburger() {
         </div>
 
         <nav className="whitespace-nowrap text-center text-2xl space-y-4 flex flex-col">
-          <Link href="/">Kovanice</Link>
+          <Link href="/" prefetch={false}>
+            Kovanice
+          </Link>
 
-          <Link href="/gold-bars">Poluge</Link>
+          <Link href="/gold-bars" prefetch={false}>
+            Poluge
+          </Link>
 
           <Link href="/trade" prefetch={false}>
             Trgovina
