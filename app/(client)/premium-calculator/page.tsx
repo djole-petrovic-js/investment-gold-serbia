@@ -20,6 +20,10 @@ import PremiumCalculatorClientComponent from "@/app/(client)/premium-calculator/
  */
 import formatPrice from "@/lib/utils/numbers/formatPrice"
 /**
+ * To keep the view data fresh.
+ */
+export const dynamic = "force-dynamic"
+/**
  * Page metadata
  */
 export const metadata: Metadata = {

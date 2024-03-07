@@ -18,6 +18,22 @@ import getImagePlaiceholderForLocalImage from "@/lib/utils/images/getImagePlaice
  */
 import imageCover from "@/public/images/gold-bars.webp"
 /**
+ * To keep the view data fresh.
+ */
+export const dynamic = "force-dynamic"
+
+import { unstable_cache as cache } from "next/cache"
+
+const fetchProductsGoldBars = cache(
+  async () => {
+    return fetchDistributersByProductTypes(["BARS"])
+  },
+  ["GoldBars::fetch"],
+  {
+    tags: ["client-side-data"]
+  }
+)
+/**
  * Page metadata
  */
 export const metadata: Metadata = {
@@ -29,7 +45,7 @@ export const metadata: Metadata = {
  * Display all gold bars from recommended distributers.
  */
 export default async function GoldBars() {
-  const distributers = await fetchDistributersByProductTypes(["BARS"])
+  const distributers = await fetchProductsGoldBars()
 
   return (
     <main className="main text-white">
