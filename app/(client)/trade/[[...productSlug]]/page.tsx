@@ -21,7 +21,7 @@ import { unstable_cache as cache } from "next/cache"
 
 const fetchProductsTrade = cache(
   async () => {
-    return fetchDistributersByProductTypes(["COINS"])
+    return fetchDistributersByProductTypes([])
   },
   ["Trade::fetch"],
   {
