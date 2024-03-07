@@ -28,6 +28,10 @@ export default function PremiumCalculator({
       ? calculatePremium(paidPrice, weightInGrams / 31.1, spotPriceInRsd)
       : 0
 
+  if (!spotPriceInRsd || spotPriceInRsd <= 0) {
+    return null
+  }
+
   return (
     <div className="m-auto w-100 lg:w-1/2 sm:w-100">
       <div className="my-16 border border-gray-50 p-3 rounded-sm">

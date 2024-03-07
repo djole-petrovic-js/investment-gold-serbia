@@ -1,8 +1,8 @@
 /**
  * Next.js core.
  */
-import type { Metadata } from "next"
 import Image from "next/image"
+import type { Metadata } from "next"
 /**
  * Environment.
  */
@@ -13,9 +13,12 @@ import { GOOGLE_SITE_VERIFICATION } from "@/lib/constants/environment"
 import DistributersListing from "@/lib/components/distributers/DistributersListing"
 import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
+ * Providers.
+ */
+import coinsDataProvider from "@/lib/providers/coins/provider"
+/**
  * Utils.
  */
-import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
 import getImagePlaiceholderForLocalImage from "@/lib/utils/images/getImagePlaiceholderForLocalImage"
 /**
  * Page Images.
@@ -36,23 +39,11 @@ export const metadata: Metadata = {
  * To keep the view data fresh.
  */
 export const dynamic = "force-dynamic"
-
-import { unstable_cache as cache } from "next/cache"
-
-const fetchProductsHome = cache(
-  async () => {
-    return fetchDistributersByProductTypes(["COINS"])
-  },
-  ["Home::fetch"],
-  {
-    tags: ["client-side-data"]
-  }
-)
 /**
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  const distributers = await fetchProductsHome()
+  const distributers = await coinsDataProvider()
 
   return (
     <main className="main">
