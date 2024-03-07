@@ -156,21 +156,10 @@ export default class GVSDistributer extends Distributer {
           cheerioBuy(priceBuySelector).attr("data-price-amount")
         )
         /**
-         * If price or sell is 0, something went wrong, or the page is being maintained or something.
-         * All other selectors should work fine, if the price is found.
+         * Skip updating this product, since it wasn't found.
          */
-        if (!priceSell) {
-          this.raiseProductScapingException(
-            "Price sell was empty!",
-            product.identifier
-          )
-        }
-
-        if (!priceBuy) {
-          this.raiseProductScapingException(
-            "Price buy was empty!",
-            product.identifier
-          )
+        if ( !priceSell || !priceBuy ) {
+          continue;
         }
 
         const urlSell = cheerioSell(priceSellSelector)
