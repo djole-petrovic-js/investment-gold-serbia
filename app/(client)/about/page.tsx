@@ -25,6 +25,10 @@ export const metadata: Metadata = {
   keywords: ["informacije", "zlato", "investiranje"]
 }
 /**
+ * To keep the view data fresh.
+ */
+export const dynamic = "force-dynamic"
+/**
  * About page.
  */
 export default async function About() {

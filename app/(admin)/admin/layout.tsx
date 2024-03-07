@@ -11,7 +11,6 @@ import "@/app/globals.css"
  * This route should not be cached.
  */
 export const revalidate = 0
-
 /**
  * Props.
  */
