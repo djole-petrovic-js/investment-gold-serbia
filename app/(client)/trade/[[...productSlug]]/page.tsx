@@ -1,33 +1,29 @@
 /**
+ * Next.js Core.
+ */
+import { Suspense } from "react"
+/**
  * Components.
  */
 import TradeClientUi from "@/app/(client)/trade/[[...productSlug]]/components/TradeClientUi"
 import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
- * Types
+ * Providers.
+ */
+import tradeProvider from "@/lib/providers/trade/provider"
+/**
+ * Types.
  */
 import { PageContextType } from "@/lib/types/pageContext"
 /**
  * Utils.
  */
-import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
 import createTradeTitle from "@/app/(client)/trade/[[...productSlug]]/utils/createTradeTitle"
+import CurrentPricesData from "@/app/(client)/trade/[[...productSlug]]/components/CurrentPricesData"
 /**
  * To keep the view data fresh.
  */
 export const dynamic = "force-dynamic"
-
-import { unstable_cache as cache } from "next/cache"
-
-const fetchProductsTrade = cache(
-  async () => {
-    return fetchDistributersByProductTypes([])
-  },
-  ["Trade::fetch"],
-  {
-    tags: ["client-side-data"]
-  }
-)
 /**
  *
  * Dynamically create the page's metadata, based on the product selected.
@@ -47,7 +43,7 @@ export async function generateMetadata(context: PageContextType) {
  * Page for helping users to find the best prices for a product they want to buy.
  */
 export default async function Trade() {
-  const distributers = await fetchProductsTrade()
+  const distributers = await tradeProvider()
 
   return (
     <main className="main">
@@ -72,6 +68,10 @@ export default async function Trade() {
             </p>
           </div>
         </div>
+
+        <Suspense fallback={<p>Ucitavanje cena...</p>}>
+          <CurrentPricesData />
+        </Suspense>
 
         <TradeClientUi distributers={distributers} />
       </div>

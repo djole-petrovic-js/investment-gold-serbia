@@ -7,18 +7,13 @@ import { Metadata } from "next"
  */
 import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
- * Database.
- */
-import sequelize from "@/lib/database/sequelize"
-import { IVariableModel } from "@/lib/database/models/Variable"
-/**
  * UI Components.
  */
 import PremiumCalculatorClientComponent from "@/app/(client)/premium-calculator/components/PremiumCalculator"
 /**
- * Utils
+ * Providers.
  */
-import formatPrice from "@/lib/utils/numbers/formatPrice"
+import variablesProvider from "@/lib/providers/variables/provider"
 /**
  * To keep the view data fresh.
  */
@@ -35,21 +30,7 @@ export const metadata: Metadata = {
  * Page for displaying all current prices information, and premium calculator client component.
  */
 export default async function PremiumCalculator() {
-  const variables = (await Promise.all([
-    sequelize.models.Variable.findOne({
-      where: { key: "SPOT_PRICE_IN_RSD" }
-    }),
-    sequelize.models.Variable.findOne({
-      where: { key: "EUR_TO_RSD_CONVERTION_RATE" }
-    })
-  ])) as IVariableModel[]
-
-  const [spotPriceInRsdString, eurToRsdConversionRateString] = variables.map(
-    ({ value }) => value
-  )
-
-  const spotPriceInRsd = Number(spotPriceInRsdString)
-  const eurToRsdConversionRate = Number(eurToRsdConversionRateString)
+  const variables = await variablesProvider()
 
   return (
     <main className="main">
@@ -72,20 +53,11 @@ export default async function PremiumCalculator() {
             <p>Becka filharmonija 1oz (31.1gr) zlatnik - Oko 5 %</p>
             <p>Becka filharmonija 1/4oz (7.8gr) zlatnik - Oko 12 %</p>
           </div>
-
-          <div>
-            <p>
-              Trenutna cena zlata za jednu uncu :{" "}
-              {formatPrice(Number(spotPriceInRsd))}
-            </p>
-          </div>
-
-          <div>
-            <p>Trenutni kurs eura : {formatPrice(eurToRsdConversionRate)}</p>
-          </div>
         </div>
 
-        <PremiumCalculatorClientComponent spotPriceInRsd={spotPriceInRsd} />
+        <PremiumCalculatorClientComponent
+          spotPriceInRsd={Number(variables.SPOT_PRICE_IN_RSD)}
+        />
       </div>
 
       <GoogleAnalytics />
