@@ -43,7 +43,6 @@ export const dynamic = "force-dynamic"
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  console.log("222333")
   const distributers = await coinsDataProvider()
 
   return (
