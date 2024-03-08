@@ -155,12 +155,6 @@ export default class GVSDistributer extends Distributer {
         const priceBuy = Number(
           cheerioBuy(priceBuySelector).attr("data-price-amount")
         )
-        /**
-         * Skip updating this product, since it wasn't found.
-         */
-        if ( !priceSell || !priceBuy ) {
-          continue;
-        }
 
         const urlSell = cheerioSell(priceSellSelector)
           .closest("div.product-item-details")

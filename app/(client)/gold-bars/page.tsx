@@ -21,7 +21,7 @@ import getImagePlaiceholderForLocalImage from "@/lib/utils/images/getImagePlaice
  */
 import imageCover from "@/public/images/gold-bars.webp"
 /**
- * To keep the view data fresh.
+ * Fully dynamic route.
  */
 export const dynamic = "force-dynamic"
 /**

@@ -51,19 +51,31 @@ export default function SingleProduct({ product }: ProductProps) {
 
           <div className="flex justify-around w-full text-xl sm:text-sm">
             <div className="space-y-1">
-              <p>Prodajna cena</p>
-              <p>Kupovna cena</p>
-              <p>Razlika</p>
-              <p>Kupovna premija</p>
-              <p>Prodajna premija</p>
+              {product.priceSell > 0 && <p>Prodajna cena</p>}
+              {product.priceBuy > 0 && <p>Kupovna cena</p>}
+              {product.priceSell > 0 && product.priceBuy > 0 ? (
+                <p>Razlika</p>
+              ) : (
+                <></>
+              )}
+              {product.priceSell > 0 && <p>Kupovna premija</p>}
+              {product.priceBuy > 0 && <p>Prodajna premija</p>}
             </div>
 
             <div className="space-y-1">
-              <p>{formatPrice(product.priceSell)}</p>
-              <p>{formatPrice(product.priceBuy)}</p>
-              <p>{formatPrice(product.priceSell - product.priceBuy)}</p>
-              <p>{formatPercentage(product.priceSellPremium)}</p>
-              <p>{formatPercentage(product.priceBuyPremium)}</p>
+              {product.priceSell > 0 && <p>{formatPrice(product.priceSell)}</p>}
+              {product.priceBuy && <p>{formatPrice(product.priceBuy)}</p>}
+              {product.priceSell > 0 && product.priceBuy > 0 ? (
+                <p>{formatPrice(product.priceSell - product.priceBuy)}</p>
+              ) : (
+                <></>
+              )}
+              {product.priceSell > 0 && (
+                <p>{formatPercentage(product.priceSellPremium)}</p>
+              )}
+              {product.priceBuy > 0 && (
+                <p>{formatPercentage(product.priceBuyPremium)}</p>
+              )}
             </div>
           </div>
 

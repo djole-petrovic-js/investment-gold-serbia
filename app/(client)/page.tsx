@@ -36,13 +36,14 @@ export const metadata: Metadata = {
   }
 }
 /**
- * To keep the view data fresh.
+ * Fully dynamic route.
  */
 export const dynamic = "force-dynamic"
 /**
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
+  console.log("222333")
   const distributers = await coinsDataProvider()
 
   return (

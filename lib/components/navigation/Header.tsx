@@ -5,7 +5,7 @@ import MobileMenu from "@/lib/components/navigation/MobileMenu"
 import DataUpdatedStripe from "@/lib/components/navigation/DataUpdatedStripe"
 import DesktopMenu from "@/lib/components/navigation/DesktopMenu/DesktopMenu"
 /**
- * Site Header
+ * Site Header.
  */
 export default function Header() {
   return (

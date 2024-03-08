@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   keywords: ["informacije", "zlato", "investiranje"]
 }
 /**
- * To keep the view data fresh.
+ * Fully dynamic route.
  */
 export const dynamic = "force-dynamic"
 /**

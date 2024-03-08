@@ -19,11 +19,15 @@ import { useParams } from "next/navigation"
  */
 type BestDealProps = {
   distributers: IDistributerModel[]
+  availableProducts: IProductModel[]
 }
 /**
  * Client component for finding the best prices for a particular product.
  */
-export default function TradeClientUi({ distributers }: BestDealProps) {
+export default function TradeClientUi({
+  distributers,
+  availableProducts
+}: BestDealProps) {
   const pageParams = useParams()
 
   const [selectedProductSlug, setSelectedProductSlug] = useState<string | null>(
@@ -49,11 +53,7 @@ export default function TradeClientUi({ distributers }: BestDealProps) {
     window.history.replaceState(null, "", `/trade/${productSlug}`)
   }
   /**
-   * Since all products have the same format, just take the first distributor.
-   */
-  const availableProducts = distributers[0]
-  /**
-   * Do not render the component at all, if for some reason no distributes exist.
+   * Do not render the component at all, if for some reason no available products exist.
    */
   if (!availableProducts) {
     return null
@@ -72,41 +72,39 @@ export default function TradeClientUi({ distributers }: BestDealProps) {
 
       <div className="p-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-1">
-          {availableProducts.Products?.map(
-            (product: IProductModel, index: number) => (
-              <div
-                key={product.name}
-                onClick={() => {
-                  showBestDeals(product.slug)
-                }}
-                className={`
+          {availableProducts.map((product: IProductModel, index: number) => (
+            <div
+              key={product.name}
+              onClick={() => {
+                showBestDeals(product.slug)
+              }}
+              className={`
                 ${product.slug === selectedProductSlug ? "bg-opacity-20 bg-white" : "bg-black"}
                 flex flex-col sm:flex-row justify-between
                 p-5 border border-white text-white rounded-md cursor-pointer lg:hover:bg-opacity-20 lg:hover:bg-white`}
-              >
-                <div className="flex mr-4 w-full sm:w-4/12 justify-center">
-                  <Image
-                    src={`/images/${product.slug}.jpg`}
-                    width={300}
-                    height={300}
-                    alt={product.name}
-                    /**
-                     * On mobile devices, the first image on this page is visible.
-                     * So try to load it asap.
-                     */
-                    loading={index === 0 ? "eager" : "lazy"}
-                    priority={index === 0 ? true : false}
-                  />
-                </div>
+            >
+              <div className="flex mr-4 w-full sm:w-4/12 justify-center">
+                <Image
+                  src={`/images/${product.slug}.jpg`}
+                  width={300}
+                  height={300}
+                  alt={product.name}
+                  /**
+                   * On mobile devices, the first image on this page is visible.
+                   * So try to load it asap.
+                   */
+                  loading={index === 0 ? "eager" : "lazy"}
+                  priority={index === 0 ? true : false}
+                />
+              </div>
 
-                <div className="flex flex-col items-center w-full sm:w-8/12 m-auto p-3 sm:p-0">
-                  <div className="mb-5">
-                    <h2>{product.name}</h2>
-                  </div>
+              <div className="flex flex-col items-center w-full sm:w-8/12 m-auto p-3 sm:p-0">
+                <div className="mb-5">
+                  <h2>{product.name}</h2>
                 </div>
               </div>
-            )
-          )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

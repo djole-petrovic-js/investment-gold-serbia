@@ -62,11 +62,12 @@ export default function BestDeals({
    * Scroll this component into view.
    */
   useEffect(() => {
-    if (wrapperRef.current && scrollIntoView) {
-      const y = wrapperRef.current.getBoundingClientRect().top + window.scrollY
+    if (scrollIntoView && wrapperRef.current) {
+      const topY =
+        wrapperRef.current.getBoundingClientRect().top + window.scrollY
 
       window.scroll({
-        top: y - 100,
+        top: topY - 100,
         behavior: "smooth"
       })
     }
@@ -75,7 +76,11 @@ export default function BestDeals({
    * Should not event happen, but just in case.
    */
   if (singleProductFromEachDistributer.length === 0) {
-    return null
+    return (
+      <div className="flex items-center justify-center w-full pt-10 pb-5 text-2xl">
+        <p>Proizvod nije nadjen</p>
+      </div>
+    )
   }
   /**
    * This product is the best buy for the customer, because the distributers 'sell' price is the lowest.
