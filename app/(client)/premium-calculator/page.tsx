@@ -15,7 +15,7 @@ import PremiumCalculatorClientComponent from "@/app/(client)/premium-calculator/
  */
 import variablesProvider from "@/lib/providers/variables/provider"
 /**
- * To keep the view data fresh.
+ * Fully dynamic route.
  */
 export const dynamic = "force-dynamic"
 /**

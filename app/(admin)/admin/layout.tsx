@@ -2,7 +2,7 @@
  * Next.js core.
  */
 import Link from "next/link"
-import logOut from "@/app/(admin)/admin/actions/logout"
+import { signOut } from "@/auth"
 /**
  * Styles.
  */
@@ -37,7 +37,13 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 Users
               </Link>
 
-              <form action={logOut}>
+              <form
+                action={async function logOut() {
+                  "use server"
+
+                  await signOut({ redirectTo: "/" })
+                }}
+              >
                 <button>Log out</button>
               </form>
             </nav>
