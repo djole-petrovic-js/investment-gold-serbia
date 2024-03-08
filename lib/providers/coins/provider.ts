@@ -11,13 +11,11 @@ import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistribut
  */
 const coinsDataProvider = cache(
   async () => {
-    console.log("wqeasd 22")
     return fetchDistributersByProductTypes(["COINS"])
   },
   ["Home::fetch"],
   {
-    tags: ["client-side-data"],
-    revalidate: 1
+    tags: ["client-side-data"]
   }
 )
 
