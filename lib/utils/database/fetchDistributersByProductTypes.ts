@@ -13,15 +13,18 @@ import { IDistributerModel } from "@/lib/database/models/Distributer"
 export default async function fetchDistributersByProductTypes(
   productTypes: string[]
 ): Promise<IDistributerModel[]> {
-  const where = productTypes.length > 0 ? { productType: productTypes } : {}
-
   const distributers = (
     await sequelize.models.Distributer.findAll({
-      order: [[sequelize.col("Products.id"), "ASC"]],
+      order: [
+        [sequelize.col("Products.productType"), "DESC"],
+        [sequelize.col("Products.priceSell"), "DESC"]
+      ],
       include: [
         {
           model: sequelize.models.Product,
-          where
+          where: {
+            ...(productTypes.length > 0 ? { productType: productTypes } : {})
+          }
         }
       ]
     })

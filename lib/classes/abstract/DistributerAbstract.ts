@@ -74,8 +74,51 @@ export default abstract class DistributerAbstract {
     )
 
     const distributerId: number = distributer.get("id") as number
+    /**
+     * Separate products into two groups:
+     *
+     * Ones to be deleted, since the data is missing.
+     * Products to insert / product.
+     */
+    const productGroups = this.fetchedProducts.reduce(
+      (
+        acc: { toDelete: IProductModel[]; toInsert: IProductModel[] },
+        product: IProductModel
+      ) => {
+        if (!product.priceSell || !product.priceBuy) {
+          acc.toDelete.push(product)
+        } else {
+          acc.toInsert.push(product)
+        }
 
-    for (const product of this.fetchedProducts) {
+        return acc
+      },
+      {
+        toDelete: [],
+        toInsert: []
+      }
+    )
+    /**
+     * This products have no buy or sell prices, which means something went wrong.
+     * So just remove them for this distributer.
+     */
+    const toDeletePromises = productGroups.toDelete.map(async (product) => {
+      const existingProduct: Model<IProductModel> | null =
+        await sequelize.models.Product.findOne({
+          where: {
+            slug: product.slug,
+            distributerId: distributerId
+          }
+        })
+
+      if (existingProduct) {
+        return existingProduct.destroy()
+      }
+    })
+    /**
+     * Update products with new data.
+     */
+    const toInsertPromises = productGroups.toInsert.map(async (product) => {
       const productData = {
         name: product.name,
         slug: product.slug,
@@ -89,18 +132,15 @@ export default abstract class DistributerAbstract {
         distributerId
       }
 
-      await createOrUpdateRecord(
+      return createOrUpdateRecord(
         sequelize.models.Product,
         { slug: product.slug, distributerId },
         productData
       )
-    }
-  }
+    })
 
-  protected raiseProductScapingException(message: string, identifier: string) {
-    throw new Error(`${message} ${this.name} ${identifier}`)
+    await Promise.all([...toDeletePromises, ...toInsertPromises])
   }
-
   /**
    * Get the list of all base products.
    *

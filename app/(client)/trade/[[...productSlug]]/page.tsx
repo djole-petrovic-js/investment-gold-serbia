@@ -5,6 +5,7 @@ import { Suspense } from "react"
 /**
  * Components.
  */
+import CurrentPricesData from "@/app/(client)/trade/[[...productSlug]]/components/CurrentPricesData"
 import TradeClientUi from "@/app/(client)/trade/[[...productSlug]]/components/TradeClientUi"
 import GoogleAnalytics from "@/lib/components/GoogleAnalytics"
 /**
@@ -19,9 +20,8 @@ import { PageContextType } from "@/lib/types/pageContext"
  * Utils.
  */
 import createTradeTitle from "@/app/(client)/trade/[[...productSlug]]/utils/createTradeTitle"
-import CurrentPricesData from "@/app/(client)/trade/[[...productSlug]]/components/CurrentPricesData"
 /**
- * To keep the view data fresh.
+ * Fully dynamic route.
  */
 export const dynamic = "force-dynamic"
 /**
@@ -43,7 +43,7 @@ export async function generateMetadata(context: PageContextType) {
  * Page for helping users to find the best prices for a product they want to buy.
  */
 export default async function Trade() {
-  const distributers = await tradeProvider()
+  const { distributers, availableProducts } = await tradeProvider()
 
   return (
     <main className="main">
@@ -73,7 +73,10 @@ export default async function Trade() {
           <CurrentPricesData />
         </Suspense>
 
-        <TradeClientUi distributers={distributers} />
+        <TradeClientUi
+          distributers={distributers}
+          availableProducts={availableProducts}
+        />
       </div>
 
       <GoogleAnalytics />
