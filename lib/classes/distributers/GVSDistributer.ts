@@ -11,7 +11,6 @@ import fetchAndInitCheerio from "@/lib/utils/http/fetchAndInitCheerio"
  * Constants
  */
 import { gvsMainUrl, gvsUrls } from "@/lib/constants/urls"
-import { IProductModel } from "@/lib/database/models/Product"
 /**
  * Class for managing the GVS Srbija distributer.
  */
@@ -184,7 +183,7 @@ export default class GVSDistributer extends Distributer {
           ),
           urlSell,
           urlBuy
-        } as IProductModel)
+        })
       }
     }
   }

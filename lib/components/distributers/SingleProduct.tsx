@@ -8,19 +8,19 @@ import Link from "next/link"
  */
 import TradeButton from "@/lib/components/buttons/TradeButton"
 /**
- * Database
- */
-import { IProductModel } from "@/lib/database/models/Product"
-/**
  * Utils.
  */
 import formatPercentage from "@/lib/utils/numbers/formatPercentage"
 import formatPrice from "@/lib/utils/numbers/formatPrice"
 /**
+ * Types.
+ */
+import { ProductsType } from "@/lib/database/types"
+/**
  * Props
  */
 type ProductProps = {
-  product: IProductModel
+  product: ProductsType
 }
 /**
  * Display info about a single distributer's product.

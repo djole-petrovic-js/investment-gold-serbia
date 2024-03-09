@@ -8,10 +8,11 @@ import { revalidateTag } from "next/cache"
 import GVSDistributer from "@/lib/classes/distributers/GVSDistributer"
 import TavexDistributer from "@/lib/classes/distributers/TavexDistributer"
 /**
- * Database and it's utils.
+ * Database.
  */
-import sequelize from "@/lib/database/sequelize"
-import createOrUpdateRecord from "@/lib/utils/database/createOrUpdateRecord"
+import { eq } from "drizzle-orm"
+import { db } from "@/lib/database/db"
+import { Variables } from "@/lib/database/schema"
 /**
  * Providers.
  */
@@ -69,14 +70,20 @@ export async function GET() {
      * Variables.
      */
     ...variables.map(async ({ key, value }) => {
-      return createOrUpdateRecord(
-        sequelize.models.Variable,
-        { key },
-        {
-          key,
-          value
-        }
-      )
+      const [existingVariable] = await db
+        .select()
+        .from(Variables)
+        .where(eq(Variables.key, key))
+        .limit(1)
+
+      if (existingVariable) {
+        return db
+          .update(Variables)
+          .set({ value: value as string })
+          .where(eq(Variables.key, key))
+      }
+
+      return db.insert(Variables).values({ key, value: value as string })
     }),
     /**
      * Distributers and Products.

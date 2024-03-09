@@ -1,30 +1,23 @@
 /**
- * Next.js Core.
- */
-import { Model } from "sequelize"
-/**
  * Constants.
  */
 import { baseProducts } from "@/lib/constants/baseProducts"
 /**
  * Database
  */
-import sequelize from "@/lib/database/sequelize"
-import { IProductModel } from "@/lib/database/models/Product"
-import { IDistributerModel } from "@/lib/database/models/Distributer"
+import { eq, and } from "drizzle-orm"
+import { db } from "@/lib/database/db"
+import { ProductsTypeInsert } from "@/lib/database/types"
+import { Distributers, Products } from "@/lib/database/schema"
 /**
- * Types
+ * Types.
  */
 import type { DistributerProductsType } from "@/lib/types/distributerData"
-/**
- * Utils.
- */
-import createOrUpdateRecord from "@/lib/utils/database/createOrUpdateRecord"
 /**
  * Instantiate all Distributers from this class.
  */
 export default abstract class DistributerAbstract {
-  protected fetchedProducts: IProductModel[] = []
+  protected fetchedProducts: ProductsTypeInsert[] = []
 
   protected name: string
   protected homeUrl: string
@@ -59,21 +52,33 @@ export default abstract class DistributerAbstract {
    * @returns {Promise<void>}
    */
   async saveFormatedDistributerData(): Promise<void> {
+    let distributerId: number = 0
+
     const distributerSlug: string = this.name
       .toLocaleLowerCase()
       .replace(" ", "-")
 
-    const distributer: Model<IDistributerModel> = await createOrUpdateRecord(
-      sequelize.models.Distributer,
-      { slug: distributerSlug },
-      {
+    const [distributer] = await db
+      .select()
+      .from(Distributers)
+      .where(eq(Distributers.slug, distributerSlug))
+
+    if (distributer) {
+      await db
+        .update(Distributers)
+        .set({ name: this.name, homeUrl: this.homeUrl, slug: distributerSlug })
+        .where(eq(Distributers.slug, distributerSlug))
+
+      distributerId = distributer.id
+    } else {
+      const [result] = await db.insert(Distributers).values({
         name: this.name,
         homeUrl: this.homeUrl,
         slug: distributerSlug
-      }
-    )
+      })
 
-    const distributerId: number = distributer.get("id") as number
+      distributerId = result.insertId
+    }
     /**
      * Separate products into two groups:
      *
@@ -82,8 +87,8 @@ export default abstract class DistributerAbstract {
      */
     const productGroups = this.fetchedProducts.reduce(
       (
-        acc: { toDelete: IProductModel[]; toInsert: IProductModel[] },
-        product: IProductModel
+        acc: { toDelete: ProductsTypeInsert[]; toInsert: ProductsTypeInsert[] },
+        product: ProductsTypeInsert
       ) => {
         if (!product.priceSell || !product.priceBuy) {
           acc.toDelete.push(product)
@@ -103,40 +108,51 @@ export default abstract class DistributerAbstract {
      * So just remove them for this distributer.
      */
     const toDeletePromises = productGroups.toDelete.map(async (product) => {
-      const existingProduct: Model<IProductModel> | null =
-        await sequelize.models.Product.findOne({
-          where: {
-            slug: product.slug,
-            distributerId: distributerId
-          }
-        })
+      const [existingProduct] = await db
+        .select()
+        .from(Products)
+        .where(
+          and(
+            eq(Products.slug, product.slug),
+            eq(Products.distributerId, distributerId)
+          )
+        )
+        .limit(1)
 
       if (existingProduct) {
-        return existingProduct.destroy()
+        return db.delete(Products).where(eq(Products.id, existingProduct.id))
       }
     })
     /**
      * Update products with new data.
      */
     const toInsertPromises = productGroups.toInsert.map(async (product) => {
-      const productData = {
-        name: product.name,
-        slug: product.slug,
-        productType: product.productType,
-        priceSell: product.priceSell,
-        priceBuy: product.priceBuy,
-        priceSellPremium: product.priceSellPremium,
-        priceBuyPremium: product.priceBuyPremium,
-        urlSell: product.urlSell,
-        urlBuy: product.urlBuy,
-        distributerId
+      const [existingProduct] = await db
+        .select()
+        .from(Products)
+        .where(
+          and(
+            eq(Products.slug, product.slug),
+            eq(Products.distributerId, distributerId)
+          )
+        )
+        .limit(1)
+
+      if (existingProduct) {
+        return db
+          .update(Products)
+          .set(Object.assign(product, { distributerId: distributerId }))
+          .where(
+            and(
+              eq(Products.slug, product.slug),
+              eq(Products.distributerId, distributerId)
+            )
+          )
       }
 
-      return createOrUpdateRecord(
-        sequelize.models.Product,
-        { slug: product.slug, distributerId },
-        productData
-      )
+      return db
+        .insert(Products)
+        .values(Object.assign(product, { distributerId: distributerId }))
     })
 
     await Promise.all([...toDeletePromises, ...toInsertPromises])

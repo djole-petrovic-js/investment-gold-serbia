@@ -5,23 +5,22 @@ import { unstable_cache as cache } from "next/cache"
 /**
  * Database.
  */
-import sequelize from "@/lib/database/sequelize"
-import { IVariableModel } from "@/lib/database/models/Variable"
+import { db } from "@/lib/database/db"
+import { VariablesType } from "@/lib/database/types"
+import { Variables } from "@/lib/database/schema"
 /**
  * Provided cached Variables values.
  */
 const variablesProvider = cache(
   async () => {
-    const variables = (await sequelize.models.Variable.findAll()).map(
-      (variable) => variable.get({ plain: true })
-    ) as IVariableModel[]
+    const variables = await db.select().from(Variables)
 
     return variables.reduce(
       (
         acc: {
           [key: string]: string
         },
-        variable: IVariableModel
+        variable: VariablesType
       ) => {
         acc[variable.key] = variable.value
 

@@ -1,36 +1,28 @@
 /**
  * Database.
  */
-import sequelize from "@/lib/database/sequelize"
-import { IDistributerModel } from "@/lib/database/models/Distributer"
+import { db } from "@/lib/database/db"
+import { desc, sql } from "drizzle-orm"
 /**
  * Fetch a distributer with some of his products (filter them by product type).
  *
  * @param {string[]} productTypes
  *
- * @returns {Promise<IDistributerModel[]>}
+ * @returns {Promise<Distributers[]>}
  */
 export default async function fetchDistributersByProductTypes(
   productTypes: string[]
-): Promise<IDistributerModel[]> {
-  const distributers = (
-    await sequelize.models.Distributer.findAll({
-      order: [
-        [sequelize.col("Products.productType"), "DESC"],
-        [sequelize.col("Products.priceSell"), "DESC"]
-      ],
-      include: [
-        {
-          model: sequelize.models.Product,
-          where: {
-            ...(productTypes.length > 0 ? { productType: productTypes } : {})
-          }
-        }
-      ]
-    })
-  ).map((distributer) =>
-    distributer.get({ plain: true })
-  ) as IDistributerModel[]
-
-  return distributers
+) {
+  return db.query.Distributers.findMany({
+    with: {
+      Products: {
+        orderBy: [
+          desc(sql.identifier("productType")),
+          desc(sql.identifier("priceSell"))
+        ],
+        where: (Products, { inArray }) =>
+          inArray(Products.productType, productTypes)
+      }
+    }
+  })
 }
