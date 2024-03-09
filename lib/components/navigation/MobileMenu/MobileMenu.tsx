@@ -8,11 +8,16 @@ import { useEffect, useState } from "react"
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 /**
+ * Styles.
+ */
+import styles from "./style.module.css"
+/**
  * Mobile menu.
  */
 export default function Hamburger() {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const pathname = usePathname()
+  console.log("pathname", pathname)
   /**
    * Prevent page scrolling if the mobile menu is showing.
    */
@@ -52,23 +57,61 @@ export default function Hamburger() {
         </div>
 
         <nav className="whitespace-nowrap text-center text-2xl space-y-4 flex flex-col">
-          <Link href="/" prefetch={false}>
+          <Link
+            href="/"
+            prefetch={false}
+            className={
+              pathname === "/" ? styles.mobileLinkHighlight : "no-underline"
+            }
+          >
             Kovanice
           </Link>
 
-          <Link href="/gold-bars" prefetch={false}>
+          <Link
+            href="/gold-bars"
+            prefetch={false}
+            className={
+              pathname === "/gold-bars"
+                ? styles.mobileLinkHighlight
+                : "no-underline"
+            }
+          >
             Poluge
           </Link>
 
-          <Link href="/trade" prefetch={false}>
+          <Link
+            href="/trade"
+            prefetch={false}
+            className={
+              pathname.startsWith("/trade")
+                ? styles.mobileLinkHighlight
+                : "no-underline"
+            }
+          >
             Trgovina
           </Link>
 
-          <Link href="/premium-calculator" prefetch={false}>
+          <Link
+            href="/premium-calculator"
+            prefetch={false}
+            className={
+              pathname === "/premium-calculator"
+                ? styles.mobileLinkHighlight
+                : "no-underline"
+            }
+          >
             Kalkulator Premija
           </Link>
 
-          <Link href="/about" prefetch={false}>
+          <Link
+            href="/about"
+            prefetch={false}
+            className={
+              pathname === "/about"
+                ? styles.mobileLinkHighlight
+                : "no-underline"
+            }
+          >
             O nama
           </Link>
         </nav>
