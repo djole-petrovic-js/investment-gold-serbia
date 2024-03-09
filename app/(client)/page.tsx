@@ -19,7 +19,6 @@ import coinsDataProvider from "@/lib/providers/coins/provider"
 /**
  * Utils.
  */
-import Timer from "@/lib/utils/timer"
 import getImagePlaiceholderForLocalImage from "@/lib/utils/images/getImagePlaiceholderForLocalImage"
 /**
  * Page Images.
@@ -44,17 +43,7 @@ export const dynamic = "force-dynamic"
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  const timer = new Timer()
-
-  timer.start()
-
   const distributers = await coinsDataProvider()
-
-  timer.end()
-
-  console.log("--------")
-  console.log(`Finished fetching in ${timer.geTimePassedInSeconds()} seconds`)
-  console.log("--------")
 
   return (
     <main className="main">
