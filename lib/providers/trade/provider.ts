@@ -3,23 +3,23 @@
  */
 import { unstable_cache as cache } from "next/cache"
 /**
- * Database.
+ * Utils.
  */
 import fetchDistributersByProductTypes from "@/lib/utils/database/fetchDistributersByProductTypes"
-import sequelize from "@/lib/database/sequelize"
+import fetchAvailableProducts from "@/lib/utils/database/fetchAvailableProducts"
 /**
  * Data provider for the Trade page.
  */
 const tradeProvider = cache(
   async () => {
+    const [distributers, availableProducts] = await Promise.all([
+      fetchDistributersByProductTypes(["COINS", "BARS"]),
+      fetchAvailableProducts()
+    ])
+
     return {
-      distributers: await fetchDistributersByProductTypes([]),
-      availableProducts: (
-        await sequelize.models.Product.findAll({
-          attributes: ["name", "slug"],
-          group: ["slug", "name"]
-        })
-      ).map((p) => p.get({ plain: true }))
+      distributers,
+      availableProducts
     }
   },
   ["Trade::distributers"],

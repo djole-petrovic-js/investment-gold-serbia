@@ -5,16 +5,19 @@ import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { z } from "zod"
 /**
+ * App Core.
+ */
+import Password from "@/lib/classes/core/Password"
+/**
  * App config
  */
-import { authConfig } from "./auth.config"
+import { authConfig } from "@/auth.config"
 /**
  * Database
  */
-import sequelize from "./lib/database/sequelize"
-
-import { IUserModel } from "./lib/database/models/User"
-import Password from "./lib/classes/core/Password"
+import { eq } from "drizzle-orm"
+import { db } from "@/lib/database/db"
+import { Users } from "@/lib/database/schema"
 /**
  * Try to authorize a user.
  */
@@ -37,9 +40,11 @@ export const { auth, signIn, signOut } = NextAuth({
 
         const { email, password } = parsedCredentials.data
 
-        const user = (await sequelize.models.User.findOne({
-          where: { email }
-        })) as IUserModel
+        const [user] = await db
+          .select()
+          .from(Users)
+          .where(eq(Users.email, email))
+          .limit(1)
 
         if (!user) {
           return null

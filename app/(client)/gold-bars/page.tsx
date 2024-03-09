@@ -63,8 +63,8 @@ export default async function GoldBars() {
             <h4 className="text-2xl tracking-widest space-y-4">
               <p>Dolaze u zastitnim pakovanjima, pa su lake za cuvanje.</p>
               <p>
-                Jeftinije od kovanica, sa manjom izmedju kupovne i prodajne
-                cene.
+                Jeftinije od kovanica, sa manjom razlikom izmedju kupovne i
+                prodajne cene.
               </p>
               <p>Razne vrste proizvodjaca.</p>
             </h4>
