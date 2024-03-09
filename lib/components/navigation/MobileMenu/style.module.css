@@ -1,0 +1,6 @@
+/*
+ * Mobile Menu Styles.
+ */
+.mobileLinkHighlight {
+  @apply border-t-2 border-b-2 border-t-white;
+}

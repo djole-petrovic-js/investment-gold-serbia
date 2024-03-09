@@ -1,7 +1,7 @@
 /**
  * Components.
  */
-import MobileMenu from "@/lib/components/navigation/MobileMenu"
+import MobileMenu from "@/lib/components/navigation/MobileMenu/MobileMenu"
 import DataUpdatedStripe from "@/lib/components/navigation/DataUpdatedStripe"
 import DesktopMenu from "@/lib/components/navigation/DesktopMenu/DesktopMenu"
 /**
