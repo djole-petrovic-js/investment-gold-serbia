@@ -11,25 +11,24 @@ import TradeButton from "@/lib/components/buttons/TradeButton"
 /**
  * Database.
  */
-import { IDistributerModel } from "@/lib/database/models/Distributer"
+import { DistributersType, ProductsType } from "@/lib/database/types"
 /**
  * Utils.
  */
 import formatPrice from "@/lib/utils/numbers/formatPrice"
 import formatPercentage from "@/lib/utils/numbers/formatPercentage"
-import { IProductModel } from "@/lib/database/models/Product"
 /**
- * Props.
+ * Props and Types.
  */
 type BestDealsProps = {
-  distributers: IDistributerModel[]
+  distributers: (DistributersType & {
+    Products: ProductsType[]
+  })[]
   selectedProductSlug: string
   scrollIntoView: boolean
 }
-/**
- * Types.
- */
-type BestDealProductType = IProductModel & {
+
+type BestDealProductType = ProductsType & {
   distributerInfo: {
     name: string
   }
@@ -46,7 +45,7 @@ export default function BestDeals({
   const singleProductFromEachDistributer: BestDealProductType[] = []
 
   for (const distributer of distributers) {
-    for (const product of distributer.Products ?? []) {
+    for (const product of distributer.Products) {
       if (product.slug === selectedProductSlug) {
         singleProductFromEachDistributer.push(
           Object.assign({}, product, {

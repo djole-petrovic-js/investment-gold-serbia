@@ -5,12 +5,14 @@ import SingleDistributer from "@/lib/components/distributers/SingleDistributer"
 /**
  * Database.
  */
-import { IDistributerModel } from "@/lib/database/models/Distributer"
+import { DistributersType, ProductsType } from "@/lib/database/types"
 /**
  * Props.
  */
 type DistributersListingProps = {
-  distributers: IDistributerModel[]
+  distributers: (DistributersType & {
+    Products: ProductsType[]
+  })[]
 }
 /**
  * Display information about a distributer, and all related products.
@@ -22,7 +24,7 @@ export default async function DistributersListing({
     <>
       {distributers.map(
         (distributer) =>
-          distributer.Products?.length && (
+          distributer.Products.length && (
             <SingleDistributer
               key={distributer.name}
               distributer={distributer}

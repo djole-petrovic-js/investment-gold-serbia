@@ -1,18 +1,22 @@
 /**
+ * Next.js Core.
+ */
+import Link from "next/link"
+/**
  * Components
  */
 import SingleProduct from "@/lib/components/distributers/SingleProduct"
 /**
  * Types
  */
-import { IDistributerModel } from "@/lib/database/models/Distributer"
-import { IProductModel } from "@/lib/database/models/Product"
-import Link from "next/link"
+import { DistributersType, ProductsType } from "@/lib/database/types"
 /**
  * Props
  */
 type SingleDistributerProps = {
-  distributer: IDistributerModel
+  distributer: DistributersType & {
+    Products: ProductsType[]
+  }
 }
 /**
  * Show information about a specific distributer, with all of his products.
@@ -29,7 +33,7 @@ export default async function SingleDistributer({
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-1">
-        {distributer.Products?.map((product: IProductModel) => (
+        {distributer.Products.map((product: ProductsType) => (
           <SingleProduct key={product.name} product={product} />
         ))}
       </div>
