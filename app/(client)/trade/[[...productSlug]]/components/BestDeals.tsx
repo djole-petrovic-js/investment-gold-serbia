@@ -124,13 +124,17 @@ export default function BestDeals({
 
             <div className="flex justify-around w-full">
               <div className="space-y-1">
-                <p>Kupite za</p>
-                <p>Kupovna premija</p>
+                <p className="text-left">Kupite za</p>
+                <p className="text-left">Kupovna premija</p>
               </div>
 
               <div className="space-y-1">
-                <p>{formatPrice(customersBestBuy.priceSell)}</p>
-                <p>{formatPercentage(customersBestBuy.priceSellPremium)}</p>
+                <p className="text-right">
+                  {formatPrice(customersBestBuy.priceSell)}
+                </p>
+                <p className="text-right">
+                  {formatPercentage(customersBestBuy.priceSellPremium)}
+                </p>
               </div>
             </div>
 
@@ -165,13 +169,17 @@ export default function BestDeals({
 
             <div className="flex justify-around w-full">
               <div>
-                <p>Prodajte za</p>
-                <p>Prodajna premija</p>
+                <p className="text-left">Prodajte za</p>
+                <p className="text-left">Prodajna premija</p>
               </div>
 
               <div>
-                <p>{formatPrice(customersBestSell.priceBuy)}</p>
-                <p>{formatPercentage(customersBestSell.priceBuyPremium)}</p>
+                <p className="text-right">
+                  {formatPrice(customersBestSell.priceBuy)}
+                </p>
+                <p className="text-right">
+                  {formatPercentage(customersBestSell.priceBuyPremium)}
+                </p>
               </div>
             </div>
 
