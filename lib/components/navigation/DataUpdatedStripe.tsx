@@ -12,10 +12,21 @@ export default async function DataUpdatedStripe() {
     return null
   }
 
+  const [date, time] = DATA_UPDATED_TIMESTAMP.split(" ")
+  const [year, month, day] = date.split("-")
+  /**
+   * If the prices are updated today, then just display the time.
+   * Otherwise, display the full date.
+   */
+  const finalTimestampToDisplay =
+    Number(new Date().getDate()) !== Number(day)
+      ? `${time} ${day}.${month}.${year}`
+      : `${time}`
+
   return (
     <div className="w-full bg-black text-white border-b-white border-b">
       <p className="text-center text-lg">
-        Cene azurirane : {DATA_UPDATED_TIMESTAMP.split(" ")[1]}
+        Cene azurirane : {finalTimestampToDisplay}
       </p>
     </div>
   )
