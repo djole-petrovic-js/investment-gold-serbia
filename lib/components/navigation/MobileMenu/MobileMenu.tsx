@@ -17,7 +17,6 @@ import styles from "./style.module.css"
 export default function Hamburger() {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const pathname = usePathname()
-  console.log("pathname", pathname)
   /**
    * Prevent page scrolling if the mobile menu is showing.
    */
