@@ -21,6 +21,8 @@
     "paths": {
       "@/*": ["./*"],
       "@/models/*": ["./lib/database/models/*"],
+      "@/client/*": ["./app/(client)/[locale]/*"],
+      "@/trade/*": ["./app/(client)/[locale]/trade/[[...productSlug]]/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

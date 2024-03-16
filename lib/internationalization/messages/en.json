@@ -1,0 +1,147 @@
+{
+  "Header": {
+    "SiteTitle": "Investment Gold Serbia",
+    "GoldCoins": "Coins",
+    "GoldBars": "Bars",
+    "Trade": "Trade",
+    "PremiumCalculator": "Premium Calculator",
+    "About": "About us"
+  },
+
+  "Footer": {
+    "CopyRight": "Copyright © 2024 Investment Gold Serbia",
+    "AllRightsReserved": "All rights reserved"
+  },
+
+  "DataUpdatedStripe": {
+    "PricesUpdated": "Prices updated at"
+  },
+
+  "SingleProduct": {
+    "Sell": "Sell price",
+    "Buy": "Buy price",
+    "Spread": "Spread",
+    "PremiumSell": "Sell premium",
+    "PremiumBuy": "Buy premium",
+    "Trade": "Trade"
+  },
+
+  "Home": {
+    "Metadata": {
+      "Title": "Coins",
+      "Description": "Investment Gold Serbia - Coins",
+      "Keywords": "gold,investing,coins"
+    },
+    "CoverImageAlt": "Gold Coins Cover Photo",
+    "GoldCoins": "Gold Coins",
+    "Highlighted-FirstParagraph": "The most liquid investment gold.",
+    "Highlighted-SecondsParagraph": "Legal tender in the countries of origin, with strong security elements.",
+    "Highlighted-ThirdParagraph": "Recognizable all over the world.",
+    "WhyCoins": "Why coins?",
+    "Main-FirstParagraph": "Due to their quality of workmanship, and the reputation of the producers, the coins are recognized all over the world, and are easily bought and sold, both by large and small investment gold dealers. Mainly because of their quality and aesthetics, they are more expensive than bullion, so the difference in selling and buying price is bigger.",
+    "Main-SecondParagraph": "Coins issued by central banks of sovereign states are legal tender in that country. The coins have a nominal value expressed in the current currency. For example. Philhamronia 1 ounce 100 euros, golden eagle 100 dollars, etc. Coins are therefore protected by the same laws that protect paper money. Therefore, the consequences of counterfeiting are significantly greater. In this regard, coins have been acquiring strong security features for years since they were produced, such as serrated edges. Today, there are even stronger, more modern measures, for example the Britannia hologram padlock, the Canadian maple leaf has a microtext on the coin itself, etc.",
+    "Main-ThirdParagraph": "They have been produced for many years, e.g. South African Krugerrand since 1967, which makes them recognizable, easy to test, and therefore easy to invest. Since they have been produced for a long time under the same standards, the integrity of all coins has been preserved, so it is easy to determine the validity.",
+    "Main-FourthParagraph": "See the offer of prominent distributors of investment gold in Serbia below."
+  },
+
+  "GoldBars": {
+    "Metadata": {
+      "Title": "Gold Bars",
+      "Description": "Investment Gold Serbia - Gold Bars",
+      "Keywords": "gold,investing,bars"
+    },
+    "CoverImageAlt": "Gold Bars Cover Photo",
+    "GoldBars": "Gold Bars",
+    "Highlighted-FirstParagraph": "They come in protective packaging, so they are easy to store.",
+    "Highlighted-SecondParagraph": "Cheaper than coins, with a smaller difference between the purchase and sale price.",
+    "Highlighted-ThirdParagraph": "Various types of manufacturers.",
+    "WhyGoldBars": "Why bars?",
+    "Main-FirstParagraph": "The so-called 'assay' packages are ideal for storing gold bars, because the gold in them is hermetically sealed and completely protected from scratches, bumps, fingerprints, etc. Thanks to modern technologies for testing the authenticity of metals, the gold in such packages is easy to test and determine that it is real.",
+    "Main-SecondParagraph": "Due to the simplicity of production, bars are somewhat cheaper than coins, so they represent perhaps a more efficient way to buy a larger amount of gold. Also, the difference between the purchase and sale price (spread) is also smaller, which makes them suitable for investment.",
+    "Main-ThirdParagraph": "Bullion from both sovereign and private mints is sold on the market. Unlike coins, sizes larger than one ounce are also sold, e.g. a gold bar of 100 grams, and even one kilogram.",
+    "Main-FourthParagraph": "See the offer of prominent distributors of investment gold in Serbia below."
+  },
+
+  "Trade": {
+    "Metadata": {
+      "Title": "Trade",
+      "Description": "Investment Gold Serbia - Trading",
+      "Keywords": "trade,products,gold,investing"
+    },
+    "Heading": "Trade",
+    "Main-FirstParagraph": "Here you can find the best buying and selling prices for each product listed below.",
+    "Main-SecondParagraph": "Distributors may of course have other products besides these, but these are shared, so we can only compare them.",
+    "Main-ThirdParagraph": "When you choose a product, by clicking on the one with the best purchase / sale price, you will be redirected to the distributor's website.",
+    "CurrentPricesData": {
+      "Loading": "Loading prices...",
+      "SpotPrice": "Market price",
+      "EuroExchangeRate": "Euro exchange rate"
+    },
+    "BestDeals": {
+      "ProductNotFound": "Proizvod nije nadjen",
+      "Buy": "Buy",
+      "BestBuy": "Best buy",
+      "BuyFor": "Buy for",
+      "BuyPremium": "Buy premium",
+      "Sell": "Sell",
+      "BestSell": "Best sell",
+      "SellFor": "Sell for",
+      "SellPremium": "Sell premium"
+    }
+  },
+
+  "PremiumCalculator": {
+    "Metadata": {
+      "Title": "Kalkulator premija",
+      "Description": "Investment Gold Serbia - Premium Calculator for an easier purchase.",
+      "Keywords": "gold,investment gold,premium,premium calculator"
+    },
+    "Heading": "Investment gold premium calculator",
+    "Main-FirstParagraph": "Calculate how much gold investment products would cost you, compared to the stock market price of gold.",
+    "Main-SecondParagraph": "Premium is an inherent element when it comes to buying, but it should not be too high. Some of the existing ones are:",
+    "Italic-FirstParagraph": "Austrian philharmonic 1oz (31.1gr) coin - Around 5 %",
+    "Italic-SecondParagraph": "Austrian philharmonic 1/4oz (7.8gr) coin - Around 12 %",
+    "Client": {
+      "Calculator": "Calculator",
+      "WeightInGrams": "Weight in grams ",
+      "PriceToPay": "Price you pay in RSD",
+      "Premium": "Premium"
+    }
+  },
+
+  "About": {
+    "Metadata": {
+      "Title": "About us",
+      "Description": "Investment Gold Serbia - About us",
+      "Keywords": "information,gold,investment"
+    },
+    "AboutUs": "About us",
+    "FirstParagraph": "The site exists with the purpose of facilitating the purchase and sale of gold in Serbia, and thus facilitating the investment of capital. Here you can find some of the gold distributors in Serbia, with all the prices they offer.",
+    "SecondsParagraph": "The site is exclusively informative and does not provide any financial advice.",
+    "ThirdParagraph": "All product data and images are taken from distributor websites. All credit goes to them. You can find all the information about them below.",
+    "EuroExchangeRate": "The average exchange rate of the euro is downloaded from the website of the National Bank of Serbia",
+    "PageWithSpotPrice": "Page with the current price of gold in euros",
+    "OpenSourceProject": "The project is open source, and you can find it",
+    "LinkToSite": "link to site",
+    "Links": "Links",
+    "Here": "here"
+  },
+
+  "Login": {
+    "LoginToSystem": "Login",
+    "LoginButtonLabel": "Log in"
+  },
+
+  "NotFound": {
+    "PageNotFound": "Page not found",
+    "PageNotFoundDescription": "This page no longer exists. Return to home",
+    "Here": "here"
+  },
+
+  "Error": {
+    "ErrorOccured": "Something went wrong",
+    "TryAgain": "Try again.",
+    "ReturnToHome": "You can return to Home",
+    "Here": "here"
+  }
+}

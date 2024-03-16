@@ -1,8 +1,12 @@
 /**
  * Next.js core.
  */
-import Link from "next/link"
 import Image from "next/image"
+/**
+ * Internationalization.
+ */
+import { Link } from "@/lib/internationalization/navigation"
+import { messagesType } from "@/lib/internationalization/types/messagesType"
 /**
  * Images.
  */
@@ -12,9 +16,15 @@ import logoImg from "@/public/images/logo.png"
  */
 import styles from "./style.module.css"
 /**
+ * Props.
+ */
+type DesktopMenuProps = {
+  messages: messagesType["Header"]
+}
+/**
  * Desktop Menu.
  */
-export default function DesktopMenu() {
+export default async function DesktopMenu({ messages }: DesktopMenuProps) {
   return (
     <div className="flex">
       <div className="mr-1">
@@ -31,15 +41,15 @@ export default function DesktopMenu() {
 
       <div className="hidden md:flex md:items-center">
         <Link className={styles.lgScreenNavLink} href="/">
-          Kovanice
+          {messages.GoldCoins}
         </Link>
 
         <Link className={styles.lgScreenNavLink} href="/gold-bars">
-          Poluge
+          {messages.GoldBars}
         </Link>
 
         <Link className={styles.lgScreenNavLink} href="/trade" prefetch={false}>
-          Trgovina
+          {messages.Trade}
         </Link>
 
         <Link
@@ -47,11 +57,11 @@ export default function DesktopMenu() {
           href="/premium-calculator"
           prefetch={false}
         >
-          Kalkulator Premija
+          {messages.PremiumCalculator}
         </Link>
 
         <Link className={styles.lgScreenNavLink} href="/about">
-          O nama
+          {messages.About}
         </Link>
       </div>
     </div>

@@ -4,7 +4,7 @@
 export default class Timer {
   private startTime: number = 0
   private endTime: number = 0
-  private timePassedInSeconds: number = 0
+  private timePassedInSeconds: string = ""
   /**
    * Class constructor.
    */
@@ -29,20 +29,20 @@ export default class Timer {
      */
     let timeDiff = this.endTime - this.startTime
     /**
-     * Strip the ms.
+     * Convert to seconds.
      */
     timeDiff /= 1000
     /**
-     * Get seconds
+     * Format seconds.miliseconds as 3 decimal places.
      */
-    this.timePassedInSeconds = Math.round(timeDiff)
+    this.timePassedInSeconds = timeDiff.toFixed(3)
   }
   /**
    * Return time elapsed in seconds.
    *
    * @returns {Number}
    */
-  public geTimePassedInSeconds(): number {
+  public geTimePassedInSeconds(): string {
     return this.timePassedInSeconds
   }
 }

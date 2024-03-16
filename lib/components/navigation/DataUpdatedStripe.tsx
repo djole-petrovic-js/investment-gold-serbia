@@ -1,4 +1,8 @@
 /**
+ * Next.js Core.
+ */
+import { getTranslations } from "next-intl/server"
+/**
  * Providers.
  */
 import variablesProvider from "@/lib/providers/variables/provider"
@@ -6,7 +10,10 @@ import variablesProvider from "@/lib/providers/variables/provider"
  * Display the time when the prices data was last updated.
  */
 export default async function DataUpdatedStripe() {
-  const { DATA_UPDATED_TIMESTAMP } = await variablesProvider()
+  const [{ DATA_UPDATED_TIMESTAMP }, t] = await Promise.all([
+    variablesProvider(),
+    getTranslations("DataUpdatedStripe")
+  ])
 
   if (!DATA_UPDATED_TIMESTAMP) {
     return null
@@ -18,7 +25,7 @@ export default async function DataUpdatedStripe() {
    * If the prices are updated today, then just display the time.
    * Otherwise, display the full date.
    */
-  const finalTimestampToDisplay =
+  const timestamp =
     Number(new Date().getDate()) !== Number(day)
       ? `${time} ${day}.${month}.${year}`
       : `${time}`
@@ -26,7 +33,7 @@ export default async function DataUpdatedStripe() {
   return (
     <div className="w-full bg-black text-white border-b-white border-b">
       <p className="text-center text-lg">
-        Cene azurirane : {finalTimestampToDisplay}
+        {t("PricesUpdated")} : {timestamp}
       </p>
     </div>
   )

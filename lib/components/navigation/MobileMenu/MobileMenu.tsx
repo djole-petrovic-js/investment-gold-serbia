@@ -2,19 +2,32 @@
 /**
  * Next.js Core.
  */
-import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 /**
+ * Components.
+ */
+import LanguageSwitcher from "@/lib/components/navigation/LanguageSwitcher"
+/**
+ * Internationalization.
+ */
+import { messagesType } from "@/lib/internationalization/types/messagesType"
+import { Link, usePathname } from "@/lib/internationalization/navigation"
+/**
  * Styles.
  */
-import styles from "./style.module.css"
+import styles from "@/lib/components/navigation/MobileMenu/style.module.css"
+/**
+ * Props.
+ */
+type MobileMenuProps = {
+  messages: messagesType["Header"]
+}
 /**
  * Mobile menu.
  */
-export default function Hamburger() {
+export default function MobileMenu({ messages }: MobileMenuProps) {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const pathname = usePathname()
   /**
@@ -51,7 +64,7 @@ export default function Hamburger() {
 
         <div className="text-center">
           <h2 className="whitespace-nowrap text-3xl border-t-2 border-b-2 border-b-white border-t-white py-2">
-            Investiciono zlato Srbija
+            {messages.SiteTitle}
           </h2>
         </div>
 
@@ -63,7 +76,7 @@ export default function Hamburger() {
               pathname === "/" ? styles.mobileLinkHighlight : "no-underline"
             }
           >
-            Kovanice
+            {messages.GoldCoins}
           </Link>
 
           <Link
@@ -75,7 +88,7 @@ export default function Hamburger() {
                 : "no-underline"
             }
           >
-            Poluge
+            {messages.GoldBars}
           </Link>
 
           <Link
@@ -87,7 +100,7 @@ export default function Hamburger() {
                 : "no-underline"
             }
           >
-            Trgovina
+            {messages.Trade}
           </Link>
 
           <Link
@@ -99,7 +112,7 @@ export default function Hamburger() {
                 : "no-underline"
             }
           >
-            Kalkulator Premija
+            {messages.PremiumCalculator}
           </Link>
 
           <Link
@@ -111,14 +124,16 @@ export default function Hamburger() {
                 : "no-underline"
             }
           >
-            O nama
+            {messages.About}
           </Link>
         </nav>
+
+        <LanguageSwitcher />
       </div>
 
       <div
         onClick={() => setShowMenu(true)}
-        className="flex items-center justify-center mr-1 md:invisible"
+        className="flex items-center justify-center mr-1 md:hidden"
       >
         <FontAwesomeIcon size="2xl" className="cursor-pointer" icon={faBars} />
       </div>

@@ -1,13 +1,19 @@
 /**
- * Site Footer
+ * Next.js Core.
  */
-export default function Footer() {
+import { getTranslations } from "next-intl/server"
+/**
+ * Site Footer.
+ */
+export default async function Footer() {
+  const t = await getTranslations("Footer")
+
   return (
     <footer>
       <div className="flex flex-col items-center gap-2 py-5 text-xs">
-        <p>Copyright © 2024 Investiciono Zlato Srbija</p>
-        <p>Sva prava zadrzana</p>
+        <p>{t("CopyRight")}</p>
+        <p>{t("AllRightsReserved")}</p>
       </div>
     </footer>
-  );
+  )
 }
