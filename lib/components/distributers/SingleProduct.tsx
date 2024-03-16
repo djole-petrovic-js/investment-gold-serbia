@@ -2,11 +2,14 @@
  * Next.js core.
  */
 import Image from "next/image"
-import Link from "next/link"
 /**
  * Components.
  */
 import TradeButton from "@/lib/components/buttons/TradeButton"
+/**
+ * Internationalization.
+ */
+import { Link } from "@/lib/internationalization/navigation"
 /**
  * Utils.
  */
@@ -16,6 +19,7 @@ import formatPrice from "@/lib/utils/numbers/formatPrice"
  * Types.
  */
 import { ProductsType } from "@/lib/database/types"
+import { getTranslations } from "next-intl/server"
 /**
  * Props
  */
@@ -25,7 +29,9 @@ type ProductProps = {
 /**
  * Display info about a single distributer's product.
  */
-export default function SingleProduct({ product }: ProductProps) {
+export default async function SingleProduct({ product }: ProductProps) {
+  const t = await getTranslations("SingleProduct")
+
   return (
     <Link href={`/trade/${product.slug}`}>
       <div
@@ -52,21 +58,21 @@ export default function SingleProduct({ product }: ProductProps) {
           <div className="flex justify-around w-full text-xl sm:text-sm">
             <div className="space-y-1">
               {product.priceSell > 0 && (
-                <p className="text-left">Prodajna cena</p>
+                <p className="text-left">{t("Sell")}</p>
               )}
-              {product.priceBuy > 0 && (
-                <p className="text-left">Kupovna cena</p>
-              )}
+
+              {product.priceBuy > 0 && <p className="text-left">{t("Buy")}</p>}
+
               {product.priceSell > 0 && product.priceBuy > 0 ? (
-                <p className="text-left">Razlika</p>
+                <p className="text-left">{t("Spread")}</p>
               ) : (
                 <></>
               )}
               {product.priceSell > 0 && (
-                <p className="text-left">Kupovna premija</p>
+                <p className="text-left">{t("PremiumSell")}</p>
               )}
               {product.priceBuy > 0 && (
-                <p className="text-left">Prodajna premija</p>
+                <p className="text-left">{t("PremiumBuy")}</p>
               )}
             </div>
 
@@ -97,7 +103,7 @@ export default function SingleProduct({ product }: ProductProps) {
             </div>
           </div>
 
-          <TradeButton label="Trgovina" />
+          <TradeButton label={t("Trade")} />
         </div>
       </div>
     </Link>

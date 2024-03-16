@@ -1,18 +1,23 @@
 /**
  * Next.js core.
  */
-import type { NextAuthConfig } from "next-auth"
 import { headers } from "next/headers"
+import type { NextAuthConfig } from "next-auth"
+import createMiddleware from "next-intl/middleware"
 /**
  * Environment.
  */
-import { API_TOKEN } from "./lib/constants/environment"
+import { API_TOKEN } from "@/lib/constants/environment"
+/**
+ * Internationalization.
+ */
+import { locales, localePrefix } from "@/lib/internationalization/navigation"
 /**
  * Partial login config.
  */
 export const authConfig = {
   pages: {
-    signIn: "/login"
+    signIn: "/sr/login"
   },
   /**
    * Auth module complains about trusted hosts, when testing production localy.
@@ -23,23 +28,32 @@ export const authConfig = {
    */
   trustHost: true,
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      if (!nextUrl.pathname.startsWith("/admin")) {
-        return true
+    authorized({ auth, request }) {
+      /**
+       * For protected route, let the auth middleware do it's thing.
+       */
+      if (request.nextUrl.pathname.startsWith("/admin")) {
+        const isLoggedIn =
+          !!auth?.user ||
+          headers().get("Authorization") === `Bearer ${API_TOKEN}`
+
+        return isLoggedIn
       }
-
-      const isLoggedIn =
-        !!auth?.user || headers().get("Authorization") === `Bearer ${API_TOKEN}`
-
-      if (!isLoggedIn) {
-        return false
-      }
-
-      if (nextUrl.pathname.startsWith("/login")) {
-        return Response.redirect(new URL("/admin/dashboard", nextUrl))
-      }
-
-      return true
+      /**
+       * For other routes, since we have multi-language pages, use another middleware.
+       */
+      return createMiddleware({
+        /**
+         * A list of all locales that are supported
+         */
+        locales,
+        localePrefix,
+        /**
+         * Used when no locale matches
+         */
+        defaultLocale: "sr",
+        localeDetection: false
+      })(request)
     },
     session: async ({ session, token }) => {
       if (session?.user) {

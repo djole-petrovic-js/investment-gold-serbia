@@ -1,4 +1,10 @@
+const withNextIntl = require("next-intl/plugin")(
+  "./lib/internationalization/i18n.ts"
+)
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+let nextConfig = {}
+
+nextConfig = withNextIntl(nextConfig)
 
 module.exports = nextConfig

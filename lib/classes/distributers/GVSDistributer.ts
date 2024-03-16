@@ -63,7 +63,7 @@ export default class GVSDistributer extends Distributer {
       }
       case "austrijska-filharmonija-1-25oz": {
         return {
-          priceSellSelector: "#product-price-1003",
+          priceSellSelector: "#product-price-2208",
           priceBuySelector: "#product-price-1427"
         }
       }
@@ -165,22 +165,26 @@ export default class GVSDistributer extends Distributer {
           .prev()
           .attr("href")
 
+        const priceSellPremium = calculatePremium(
+          priceSell,
+          product.weightDivider,
+          this.spotPriceInRsd
+        )
+
+        const priceBuyPremium = calculatePremium(
+          priceBuy,
+          product.weightDivider,
+          this.spotPriceInRsd
+        )
+
         this.fetchedProducts.push({
           name: product.name,
           slug: product.identifier,
           productType: productType,
-          priceSell,
-          priceBuy,
-          priceSellPremium: calculatePremium(
-            priceSell,
-            product.weightDivider,
-            this.spotPriceInRsd
-          ),
-          priceBuyPremium: calculatePremium(
-            priceBuy,
-            product.weightDivider,
-            this.spotPriceInRsd
-          ),
+          priceSell: isNaN(priceSell) ? 0 : priceSell,
+          priceBuy: isNaN(priceBuy) ? 0 : priceBuy,
+          priceSellPremium: isNaN(priceSellPremium) ? 0 : priceSellPremium,
+          priceBuyPremium: isNaN(priceBuyPremium) ? 0 : priceBuyPremium,
           urlSell,
           urlBuy
         })

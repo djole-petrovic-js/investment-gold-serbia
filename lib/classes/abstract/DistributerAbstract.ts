@@ -90,7 +90,7 @@ export default abstract class DistributerAbstract {
         acc: { toDelete: ProductsTypeInsert[]; toInsert: ProductsTypeInsert[] },
         product: ProductsTypeInsert
       ) => {
-        if (!product.priceSell || !product.priceBuy) {
+        if (!product.priceSell && !product.priceBuy) {
           acc.toDelete.push(product)
         } else {
           acc.toInsert.push(product)
