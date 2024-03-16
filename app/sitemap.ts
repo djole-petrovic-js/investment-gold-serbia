@@ -10,46 +10,65 @@ import { SITE_BASE_URL } from "@/lib/constants/environment"
  * Utils.
  */
 import getBaseProductsSlugs from "@/lib/utils/getBaseProductsSlugs"
+import { locales } from "@/lib/internationalization/navigation"
 /**
  * Serve the static sitemap.xml file.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const sitemap = [
     {
-      url: `${SITE_BASE_URL}/`,
+      url: `${SITE_BASE_URL}`,
       lastModified: new Date(),
       changeFrequency: "hourly",
       priority: 1
-    },
-    {
-      url: `${SITE_BASE_URL}/gold-bars`,
+    }
+  ]
+
+  for (const locale of locales) {
+    sitemap.push({
+      url: `${SITE_BASE_URL}/${locale}`,
+      lastModified: new Date(),
+      changeFrequency: "hourly",
+      priority: 1
+    })
+
+    sitemap.push({
+      url: `${SITE_BASE_URL}/${locale}/gold-bars`,
       lastModified: new Date(),
       changeFrequency: "hourly",
       priority: 0.9
-    },
-    {
-      url: `${SITE_BASE_URL}/trade`,
+    })
+
+    sitemap.push({
+      url: `${SITE_BASE_URL}/${locale}/trade`,
       lastModified: new Date(),
       changeFrequency: "hourly",
       priority: 0.9
-    },
-    ...getBaseProductsSlugs().map((slug: string) => ({
-      url: `${SITE_BASE_URL}/trade/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: "hourly",
-      priority: 0.9
-    })),
-    {
-      url: `${SITE_BASE_URL}/premium-calculator`,
+    })
+
+    sitemap.push(
+      ...getBaseProductsSlugs().map((slug) => ({
+        url: `${SITE_BASE_URL}/${locale}/trade/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: "hourly",
+        priority: 0.9
+      }))
+    )
+
+    sitemap.push({
+      url: `${SITE_BASE_URL}/${locale}/premium-calculator`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.6
-    },
-    {
-      url: `${SITE_BASE_URL}/about`,
+    })
+
+    sitemap.push({
+      url: `${SITE_BASE_URL}/${locale}/about`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.5
-    }
-  ] as MetadataRoute.Sitemap
+    })
+  }
+
+  return sitemap as MetadataRoute.Sitemap
 }

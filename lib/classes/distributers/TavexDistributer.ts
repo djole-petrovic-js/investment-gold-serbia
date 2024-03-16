@@ -79,22 +79,26 @@ export default class TavexDistributer extends Distributer {
           .closest("a.product")
           .attr("href")
 
+        const priceSellPremium = calculatePremium(
+          priceSell,
+          product.weightDivider,
+          this.spotPriceInRsd
+        )
+
+        const priceBuyPremium = calculatePremium(
+          priceBuy,
+          product.weightDivider,
+          this.spotPriceInRsd
+        )
+
         this.fetchedProducts.push({
           name: product.name,
           slug: product.identifier,
           productType: productType,
-          priceSell,
-          priceBuy,
-          priceSellPremium: calculatePremium(
-            priceSell,
-            product.weightDivider,
-            this.spotPriceInRsd
-          ),
-          priceBuyPremium: calculatePremium(
-            priceBuy,
-            product.weightDivider,
-            this.spotPriceInRsd
-          ),
+          priceSell: isNaN(priceSell) ? 0 : priceSell,
+          priceBuy: isNaN(priceBuy) ? 0 : priceBuy,
+          priceSellPremium: isNaN(priceSellPremium) ? 0 : priceSellPremium,
+          priceBuyPremium: isNaN(priceBuyPremium) ? 0 : priceBuyPremium,
           urlSell,
           urlBuy
         })
