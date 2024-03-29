@@ -5,9 +5,9 @@ import Image from "next/image"
 import type { Metadata } from "next"
 import { getTranslations } from "next-intl/server"
 /**
- * Environment.
+ * Constants.
  */
-import { GOOGLE_SITE_VERIFICATION } from "@/lib/constants/environment"
+import { GOOGLE_SITE_VERIFICATION, CDN_URL } from "@/lib/constants/environment"
 /**
  * Components.
  */
@@ -19,11 +19,7 @@ import coinsDataProvider from "@/lib/providers/coins/provider"
 /**
  * Utils.
  */
-import getImagePlaiceholderForLocalImage from "@/lib/utils/images/getImagePlaiceholderForLocalImage"
-/**
- * Page Images.
- */
-import goldCoinsCoverImage from "@/public/images/gold-coins.jpg"
+import getImagePlaiceholder from "@/lib/utils/images/getImagePlaiceholder"
 /**
  * Fully dynamic route.
  */
@@ -47,6 +43,8 @@ export async function generateMetadata(): Promise<Metadata> {
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
+  const imageCoverUrl = `https://${CDN_URL}/images/gold-coins.jpg`
+
   const [distributers, t] = await Promise.all([
     coinsDataProvider(),
     getTranslations("Home")
@@ -58,15 +56,15 @@ export default async function Home() {
       <div className="mt-1">
         <div className="absolute h-screen">
           <Image
-            src={goldCoinsCoverImage}
+            src={imageCoverUrl}
+            alt={t("CoverImageAlt")}
+            width={2560}
+            height={1440}
             priority={true}
             className="h-screen object-cover"
-            alt={t("CoverImageAlt")}
             sizes="100vw"
             placeholder="blur"
-            blurDataURL={await getImagePlaiceholderForLocalImage(
-              "gold-coins.jpg"
-            )}
+            blurDataURL={await getImagePlaiceholder(imageCoverUrl)}
           />
         </div>
 
