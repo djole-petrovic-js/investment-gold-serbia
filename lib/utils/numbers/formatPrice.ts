@@ -1,14 +1,14 @@
 /**
  * Format a price with a currency.
- * 
- * @param {Number} price 
- * 
+ *
+ * @param {Number} price
+ *
  * @returns {String}
  */
-export default function formatPrice(price: number) : string {
-  return new Intl.NumberFormat('sr', {
-    style: 'currency',
-    currency: 'RSD',
-    minimumFractionDigits: 2,
-  }).format(price);
+export default function formatPrice(price: number): string {
+  return new Intl.NumberFormat("sr", {
+    style: "currency",
+    currency: "RSD",
+    minimumFractionDigits: 2
+  }).format(price)
 }
