@@ -11,8 +11,9 @@ import {
   DB_NAME,
   DB_PASSWORD,
   DB_USERNAME,
+  DB_PORT,
   IS_DEV_ENV
-} from "../constants/environment"
+} from "@/lib/constants/environment"
 /**
  * Drizzle Schema.
  */
@@ -25,6 +26,7 @@ const poolConnection = mysql.createPool({
   user: DB_USERNAME,
   database: DB_NAME,
   password: DB_PASSWORD,
+  port: DB_PORT,
   pool: {
     max: 5,
     min: 0,
