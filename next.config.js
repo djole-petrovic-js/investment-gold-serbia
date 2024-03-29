@@ -3,7 +3,11 @@ const withNextIntl = require("next-intl/plugin")(
 )
 
 /** @type {import('next').NextConfig} */
-let nextConfig = {}
+let nextConfig = {
+  images: {
+    domains: ["investment-gold-serbia-storage.fra1.cdn.digitaloceanspaces.com"]
+  }
+}
 
 nextConfig = withNextIntl(nextConfig)
 
