@@ -29,7 +29,7 @@ export const IS_DEV_ENV: boolean = SITE_BASE_URL.includes("localhost")
 /**
  * Token used to make API requests, outside of the App.
  */
-export const API_TOKEN: string = process.env.API_TOKEN || ""
+export const CRON_SECRET: string = process.env.CRON_SECRET || ""
 /**
  * Google search console verification.
  */
