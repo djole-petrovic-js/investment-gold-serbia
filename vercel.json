@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/admin/api/refresh-products",
+      "schedule": "*/16 * * * 1,2,3,4,5"
+    }
+  ]
+}

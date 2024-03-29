@@ -7,7 +7,7 @@ import createMiddleware from "next-intl/middleware"
 /**
  * Environment.
  */
-import { API_TOKEN } from "@/lib/constants/environment"
+import { CRON_SECRET } from "@/lib/constants/environment"
 /**
  * Internationalization.
  */
@@ -35,7 +35,7 @@ export const authConfig = {
       if (request.nextUrl.pathname.startsWith("/admin")) {
         const isLoggedIn =
           !!auth?.user ||
-          headers().get("Authorization") === `Bearer ${API_TOKEN}`
+          headers().get("Authorization") === `Bearer ${CRON_SECRET}`
 
         return isLoggedIn
       }
