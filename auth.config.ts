@@ -5,7 +5,7 @@ import { headers } from "next/headers"
 import type { NextAuthConfig } from "next-auth"
 import createMiddleware from "next-intl/middleware"
 /**
- * Environment.
+ * Constants.
  */
 import { CRON_SECRET } from "@/lib/constants/environment"
 /**
