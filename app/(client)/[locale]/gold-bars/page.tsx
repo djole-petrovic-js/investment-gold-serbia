@@ -4,6 +4,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { getTranslations } from "next-intl/server"
+import { getPlaiceholder } from "plaiceholder"
 /**
  * Components.
  */
@@ -12,14 +13,6 @@ import DistributersListing from "@/lib/components/distributers/DistributersListi
  * Providers.
  */
 import goldBardsDataProvider from "@/lib/providers/bars/provider"
-/**
- * Utils.
- */
-import getImagePlaiceholderForLocalImage from "@/lib/utils/images/getImagePlaiceholderForLocalImage"
-/**
- * Page Images.
- */
-import imageCover from "@/public/images/gold-bars.webp"
 /**
  * Fully dynamic route.
  */
@@ -40,10 +33,18 @@ export async function generateMetadata(): Promise<Metadata> {
  * Display all gold bars from recommended distributers.
  */
 export default async function GoldBars() {
-  const [distributers, t] = await Promise.all([
+  const imageCoverUrl =
+    "https://investment-gold-serbia-storage.fra1.cdn.digitaloceanspaces.com/images/gold-bars.webp"
+
+  const [distributers, t, buffer] = await Promise.all([
     goldBardsDataProvider(),
-    getTranslations("GoldBars")
+    getTranslations("GoldBars"),
+    fetch(imageCoverUrl).then(async (res) =>
+      Buffer.from(await res.arrayBuffer())
+    )
   ])
+
+  const { base64: blurDataURL } = await getPlaiceholder(buffer)
 
   return (
     <main className="main text-white">
@@ -51,15 +52,15 @@ export default async function GoldBars() {
       <div className="mt-1">
         <div className="absolute h-screen">
           <Image
-            className="h-screen object-cover"
-            src={imageCover}
+            src={imageCoverUrl}
             alt={t("CoverImageAlt")}
+            width={2560}
+            height={1440}
+            className="h-screen object-cover"
             priority={true}
             sizes="100vw"
             placeholder="blur"
-            blurDataURL={await getImagePlaiceholderForLocalImage(
-              "gold-bars.webp"
-            )}
+            blurDataURL={blurDataURL}
           />
         </div>
 
