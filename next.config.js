@@ -5,7 +5,7 @@ const withNextIntl = require("next-intl/plugin")(
 /** @type {import('next').NextConfig} */
 let nextConfig = {
   images: {
-    domains: ["investment-gold-serbia-storage.fra1.cdn.digitaloceanspaces.com"]
+    domains: [process.env.CDN_URL]
   }
 }
 

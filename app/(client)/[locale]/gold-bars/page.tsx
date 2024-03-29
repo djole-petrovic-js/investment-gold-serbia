@@ -4,7 +4,10 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { getTranslations } from "next-intl/server"
-import { getPlaiceholder } from "plaiceholder"
+/**
+ * Constants
+ */
+import { CDN_URL } from "@/lib/constants/environment"
 /**
  * Components.
  */
@@ -13,6 +16,10 @@ import DistributersListing from "@/lib/components/distributers/DistributersListi
  * Providers.
  */
 import goldBardsDataProvider from "@/lib/providers/bars/provider"
+/**
+ * Utils.
+ */
+import getImagePlaiceholder from "@/lib/utils/images/getImagePlaiceholder"
 /**
  * Fully dynamic route.
  */
@@ -33,18 +40,12 @@ export async function generateMetadata(): Promise<Metadata> {
  * Display all gold bars from recommended distributers.
  */
 export default async function GoldBars() {
-  const imageCoverUrl =
-    "https://investment-gold-serbia-storage.fra1.cdn.digitaloceanspaces.com/images/gold-bars.webp"
+  const imageCoverUrl = `https://${CDN_URL}/images/gold-bars.webp`
 
-  const [distributers, t, buffer] = await Promise.all([
+  const [distributers, t] = await Promise.all([
     goldBardsDataProvider(),
-    getTranslations("GoldBars"),
-    fetch(imageCoverUrl).then(async (res) =>
-      Buffer.from(await res.arrayBuffer())
-    )
+    getTranslations("GoldBars")
   ])
-
-  const { base64: blurDataURL } = await getPlaiceholder(buffer)
 
   return (
     <main className="main text-white">
@@ -60,7 +61,7 @@ export default async function GoldBars() {
             priority={true}
             sizes="100vw"
             placeholder="blur"
-            blurDataURL={blurDataURL}
+            blurDataURL={await getImagePlaiceholder(imageCoverUrl)}
           />
         </div>
 
