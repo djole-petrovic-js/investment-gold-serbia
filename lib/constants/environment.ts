@@ -19,6 +19,10 @@ export const DB_USERNAME: string = process.env.DB_USERNAME || ""
  */
 export const DB_PASSWORD: string = process.env.DB_PASSWORD || ""
 /**
+ * Database port.
+ */
+export const DB_PORT: number = parseInt(process.env.DB_PORT || "3306")
+/**
  * Check if development environment.
  */
 export const IS_DEV_ENV: boolean = SITE_BASE_URL.includes("localhost")
