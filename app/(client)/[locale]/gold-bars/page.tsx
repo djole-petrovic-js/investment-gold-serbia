@@ -19,7 +19,7 @@ import goldBardsDataProvider from "@/lib/providers/bars/provider"
 /**
  * Utils.
  */
-import getImagePlaiceholder from "@/lib/utils/images/getImagePlaiceholder"
+import getImageMetadata from "@/lib/utils/images/getImageMetadata"
 /**
  * Fully dynamic route.
  */
@@ -40,10 +40,9 @@ export async function generateMetadata(): Promise<Metadata> {
  * Display all gold bars from recommended distributers.
  */
 export default async function GoldBars() {
-  const imageCoverUrl = `https://${CDN_URL}/images/gold-bars.webp`
-
-  const [distributers, t] = await Promise.all([
+  const [distributers, coverImageMetadata, t] = await Promise.all([
     goldBardsDataProvider(),
+    getImageMetadata(`https://${CDN_URL}/images/gold-bars.webp`),
     getTranslations("GoldBars")
   ])
 
@@ -53,15 +52,15 @@ export default async function GoldBars() {
       <div className="mt-1">
         <div className="absolute h-screen">
           <Image
-            src={imageCoverUrl}
+            src={coverImageMetadata.imageFullUrl}
             alt={t("CoverImageAlt")}
-            width={2560}
-            height={1440}
+            width={coverImageMetadata.dimensions.width}
+            height={coverImageMetadata.dimensions.height}
             className="h-screen object-cover"
             priority={true}
             sizes="100vw"
             placeholder="blur"
-            blurDataURL={await getImagePlaiceholder(imageCoverUrl)}
+            blurDataURL={coverImageMetadata.blurDataURL}
           />
         </div>
 

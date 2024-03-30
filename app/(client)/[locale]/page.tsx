@@ -19,7 +19,7 @@ import coinsDataProvider from "@/lib/providers/coins/provider"
 /**
  * Utils.
  */
-import getImagePlaiceholder from "@/lib/utils/images/getImagePlaiceholder"
+import getImageMetadata from "@/lib/utils/images/getImageMetadata"
 /**
  * Fully dynamic route.
  */
@@ -43,10 +43,9 @@ export async function generateMetadata(): Promise<Metadata> {
  * Display all coins from recommended distributers.
  */
 export default async function Home() {
-  const imageCoverUrl = `https://${CDN_URL}/images/gold-coins.jpg`
-
-  const [distributers, t] = await Promise.all([
+  const [distributers, coverImageMetadata, t] = await Promise.all([
     coinsDataProvider(),
+    getImageMetadata(`https://${CDN_URL}/images/gold-coins.jpg`),
     getTranslations("Home")
   ])
 
@@ -56,15 +55,15 @@ export default async function Home() {
       <div className="mt-1">
         <div className="absolute h-screen">
           <Image
-            src={imageCoverUrl}
+            src={coverImageMetadata.imageFullUrl}
             alt={t("CoverImageAlt")}
-            width={2560}
-            height={1440}
+            width={coverImageMetadata.dimensions.width}
+            height={coverImageMetadata.dimensions.height}
             priority={true}
             className="h-screen object-cover"
             sizes="100vw"
             placeholder="blur"
-            blurDataURL={await getImagePlaiceholder(imageCoverUrl)}
+            blurDataURL={coverImageMetadata.blurDataURL}
           />
         </div>
 
