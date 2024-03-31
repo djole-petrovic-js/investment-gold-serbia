@@ -82,7 +82,7 @@ export default async function Home() {
       {/* END - Cover photo with short info */}
       {/* BEGIN - Info about gold coins */}
       <div className="text-white p-5">
-        <h1 className="mainH1">{t("WhyCoins")}</h1>
+        <h2 className="mainH2">{t("WhyCoins")}</h2>
 
         <div className="space-y-5 text-xl">
           <p>{t("Main-FirstParagraph")}</p>

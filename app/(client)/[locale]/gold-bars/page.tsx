@@ -79,7 +79,7 @@ export default async function GoldBars() {
       {/* END - Cover photo with short info */}
       {/* BEGIN - Info about gold bars */}
       <div className="p-5">
-        <h1 className="mainH1">{t("WhyGoldBars")}</h1>
+        <h2 className="mainH2">{t("WhyGoldBars")}</h2>
 
         <div className="space-y-5 text-xl">
           <p>{t("Main-FirstParagraph")}</p>
