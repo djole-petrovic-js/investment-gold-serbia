@@ -39,13 +39,13 @@ export default class GVSDistributer extends Distributer {
     switch (identifier) {
       case "austrijska-filharmonija-1oz": {
         return {
-          priceSellSelector: "#product-price-1011",
+          priceSellSelector: "#product-price-999",
           priceBuySelector: "#product-price-1423"
         }
       }
       case "austrijska-filharmonija-1-2oz": {
         return {
-          priceSellSelector: "#product-price-1012",
+          priceSellSelector: "#product-price-1000",
           priceBuySelector: "#product-price-1424"
         }
       }

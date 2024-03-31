@@ -15,7 +15,7 @@
   }
 
   /* Main H1 Styles*/
-  .mainH1 {
+  .mainH2 {
     @apply text-5xl mb-5 italic;
   }
 }
