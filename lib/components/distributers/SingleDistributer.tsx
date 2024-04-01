@@ -27,9 +27,9 @@ export default async function SingleDistributer({
   return (
     <div className="p-5">
       <Link href={distributer.homeUrl} target="_blank">
-        <h1 className="underline text-5xl mb-5 text-white">
+        <h3 className="underline text-5xl mb-5 text-white">
           {distributer.name}
-        </h1>
+        </h3>
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-1">
