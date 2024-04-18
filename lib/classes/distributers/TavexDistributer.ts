@@ -23,7 +23,7 @@ export default class TavexDistributer extends Distributer {
     super({
       name: "Tavex",
       homeUrl: tavexMainUrl,
-      spotPriceInRsd
+      spotPriceInRsd,
     })
   }
   /**
@@ -40,7 +40,7 @@ export default class TavexDistributer extends Distributer {
   } {
     return {
       priceSellSelector: `.h-container a[data-id][href*="${identifier}"] .product__price--single .product__price-value`,
-      priceBuySelector: `.h-container a[data-id][href*="${identifier}"] .product__price--buy .price-amount-whole`
+      priceBuySelector: `.h-container a[data-id][href*="${identifier}"] .product__price--buy .price-amount-whole`,
     }
   }
   /**
@@ -53,42 +53,31 @@ export default class TavexDistributer extends Distributer {
 
     for (const productType of Object.keys(Distributer.products)) {
       for (const product of Distributer.products[productType]) {
-        const { priceSellSelector, priceBuySelector } =
-          this.getProductHtmlSelectors(product.identifier)
+        const { priceSellSelector, priceBuySelector } = this.getProductHtmlSelectors(
+          product.identifier,
+        )
 
         const priceSell: number = Number(
-          cheerio(priceSellSelector)
-            .text()
-            .trim()
-            .replace("din", "")
-            .replace(" ", "")
+          cheerio(priceSellSelector).text().trim().replace("din", "").replace(" ", ""),
         )
         const priceBuy: number = Number(
-          cheerio(priceBuySelector)
-            .text()
-            .trim()
-            .replace("din", "")
-            .replace(" ", "")
+          cheerio(priceBuySelector).text().trim().replace("din", "").replace(" ", ""),
         )
 
-        const urlSell = cheerio(priceSellSelector)
-          .closest("a.product")
-          .attr("href")
+        const urlSell = cheerio(priceSellSelector).closest("a.product").attr("href")
 
-        const urlBuy = cheerio(priceSellSelector)
-          .closest("a.product")
-          .attr("href")
+        const urlBuy = cheerio(priceSellSelector).closest("a.product").attr("href")
 
         const priceSellPremium = calculatePremium(
           priceSell,
           product.weightDivider,
-          this.spotPriceInRsd
+          this.spotPriceInRsd,
         )
 
         const priceBuyPremium = calculatePremium(
           priceBuy,
           product.weightDivider,
-          this.spotPriceInRsd
+          this.spotPriceInRsd,
         )
 
         this.fetchedProducts.push({
@@ -100,7 +89,7 @@ export default class TavexDistributer extends Distributer {
           priceSellPremium: isNaN(priceSellPremium) ? 0 : priceSellPremium,
           priceBuyPremium: isNaN(priceBuyPremium) ? 0 : priceBuyPremium,
           urlSell,
-          urlBuy
+          urlBuy,
         })
       }
     }

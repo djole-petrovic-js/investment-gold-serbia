@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/admin/api/refresh-products",
-      "schedule": "*/16 * * * 1,2,3,4,5"
+      "schedule": "*/10 * * * 1,2,3,4,5"
     }
   ]
 }
