@@ -75,7 +75,7 @@ export default function BestDeals({
     }
   }, [scrollIntoView])
   /**
-   * Should not event happen, but just in case.
+   * Should not ever happen, but just in case.
    */
   if (singleProductFromEachDistributer.length === 0) {
     return (

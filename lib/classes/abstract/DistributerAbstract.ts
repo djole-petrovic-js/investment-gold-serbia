@@ -83,7 +83,7 @@ export default abstract class DistributerAbstract {
      * Separate products into two groups:
      *
      * Ones to be deleted, since the data is missing.
-     * Products to insert / product.
+     * Products to insert / update.
      */
     const productGroups = this.fetchedProducts.reduce(
       (
