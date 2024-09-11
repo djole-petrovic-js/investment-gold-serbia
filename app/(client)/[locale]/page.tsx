@@ -35,8 +35,8 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t("Description"),
     keywords: t("Keywords").split(","),
     other: {
-      "google-site-verification": GOOGLE_SITE_VERIFICATION
-    }
+      "google-site-verification": GOOGLE_SITE_VERIFICATION,
+    },
   }
 }
 /**
@@ -46,7 +46,7 @@ export default async function Home() {
   const [distributers, coverImageMetadata, t] = await Promise.all([
     coinsDataProvider(),
     getImageMetadata(`https://${CDN_URL}/images/gold-coins.jpg`),
-    getTranslations("Home")
+    getTranslations("Home"),
   ])
 
   return (

@@ -3,7 +3,7 @@
  */
 export const SITE_BASE_URL: string = process.env.SITE_BASE_URL || ""
 /**
- * CDN Url
+ * CDN Url.
  */
 export const CDN_URL: string = process.env.CDN_URL || ""
 /**
