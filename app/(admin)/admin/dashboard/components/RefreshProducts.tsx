@@ -25,7 +25,7 @@ export default function RefreshData() {
       })
       .catch(() => {
         setAjaxData({
-          success: false
+          success: false,
         })
       })
       .finally(() => {
@@ -34,7 +34,7 @@ export default function RefreshData() {
   }
 
   return (
-    <div>
+    <>
       {isLoading && (
         <div>
           <p>Loading...</p>
@@ -44,19 +44,17 @@ export default function RefreshData() {
       {ajaxData && (
         <div>
           <p>Success : {ajaxData.success ? "Yes" : "No"}</p>
-          {ajaxData.success && (
-            <p>Refreshed in {ajaxData.timePassedInSeconds} seconds.</p>
-          )}
+          {ajaxData.success && <p>Refreshed in {ajaxData.timePassedInSeconds} seconds.</p>}
         </div>
       )}
 
       <button
         onClick={refreshData}
         disabled={isLoading}
-        className={`border border-black p-2 rounded-md ${isLoading ? "disabled" : ""}`}
+        className={`rounded-md border border-black p-2 ${isLoading ? "disabled" : ""}`}
       >
         Refresh products
       </button>
-    </div>
+    </>
   )
 }

@@ -51,19 +51,19 @@ export default class GVSDistributer extends Distributer {
       }
       case "austrijska-filharmonija-1-4oz": {
         return {
-          priceSellSelector: "#product-price-1154",
+          priceSellSelector: "#product-price-1001",
           priceBuySelector: "#product-price-1425"
         }
       }
       case "austrijska-filharmonija-1-10oz": {
         return {
-          priceSellSelector: "#product-price-1155",
+          priceSellSelector: "#product-price-1002",
           priceBuySelector: "#product-price-1426"
         }
       }
       case "austrijska-filharmonija-1-25oz": {
         return {
-          priceSellSelector: "#product-price-2208",
+          priceSellSelector: "#product-price-1003",
           priceBuySelector: "#product-price-1427"
         }
       }
