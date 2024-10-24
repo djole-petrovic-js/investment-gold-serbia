@@ -34,15 +34,13 @@ export const dynamic = "force-dynamic"
  *
  * @returns {Metadata}
  */
-export async function generateMetadata(
-  context: PageContextType
-): Promise<Metadata> {
+export async function generateMetadata(context: PageContextType): Promise<Metadata> {
   const t = await getTranslations("Trade.Metadata")
 
   return {
     title: createTradeTitle(t("Title"), context),
     description: t("Description"),
-    keywords: t("Keywords")
+    keywords: t("Keywords"),
   }
 }
 /**
@@ -52,7 +50,7 @@ export default async function Trade() {
   const [{ distributers, availableProducts }, locale, t] = await Promise.all([
     tradeProvider(),
     getLocale(),
-    getTranslations("Trade")
+    getTranslations("Trade"),
   ])
 
   return (
@@ -83,8 +81,8 @@ export default async function Trade() {
               Sell: t("BestDeals.Sell"),
               BestSell: t("BestDeals.BestSell"),
               SellFor: t("BestDeals.SellFor"),
-              SellPremium: t("BestDeals.SellPremium")
-            }
+              SellPremium: t("BestDeals.SellPremium"),
+            },
           }}
         >
           <TradeClientUi
