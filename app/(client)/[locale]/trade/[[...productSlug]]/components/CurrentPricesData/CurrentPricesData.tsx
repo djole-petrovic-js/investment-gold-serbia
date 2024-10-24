@@ -14,21 +14,19 @@ import formatPrice from "@/lib/utils/numbers/formatPrice"
  * Display all relevant trade prices.
  */
 export default async function CurrentPricesData() {
-  const [{ SPOT_PRICE_IN_RSD, EUR_TO_RSD_CONVERTION_RATE }, t] =
-    await Promise.all([
-      variablesProvider(),
-      getTranslations("Trade.CurrentPricesData")
-    ])
+  const [{ SPOT_PRICE_IN_RSD, EUR_TO_RSD_CONVERTION_RATE }, t] = await Promise.all([
+    variablesProvider(),
+    getTranslations("Trade.CurrentPricesData"),
+  ])
 
   return (
-    <div className="flex justify-center px-5 divide-x-2 border-t border-b border-t-white">
+    <div className="flex justify-center divide-x-2 border-b border-t border-t-white px-5">
       <p className="px-2 text-center">
         {t("SpotPrice")} : {formatPrice(Number(SPOT_PRICE_IN_RSD))}
       </p>
 
       <p className="px-2 text-center">
-        {t("EuroExchangeRate")} :{" "}
-        {formatPrice(Number(EUR_TO_RSD_CONVERTION_RATE))}
+        {t("EuroExchangeRate")} : {formatPrice(Number(EUR_TO_RSD_CONVERTION_RATE))}
       </p>
     </div>
   )

@@ -22,7 +22,7 @@ type DashboardLayoutProps = {
  */
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <html lang="sr">
+    <html lang="en">
       <body>
         <div className="flex gap-3 p-5">
           <div className="w-1/5">

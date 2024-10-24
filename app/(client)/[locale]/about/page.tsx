@@ -11,7 +11,7 @@ import {
   livePriceOfGold,
   nbsUrl,
   projectGithubUrl,
-  tavexMainUrl
+  tavexMainUrl,
 } from "@/lib/constants/urls"
 /**
  * Page metadata.
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t("Title"),
     description: t("Description"),
-    keywords: t("Keywords").split(",")
+    keywords: t("Keywords").split(","),
   }
 }
 /**
@@ -37,7 +37,7 @@ export default async function About() {
 
   return (
     <main className="main">
-      <div className="text-white pt-5 px-5 w-full md:w-4/5 md:mx-auto">
+      <div className="w-full px-5 pt-5 text-white md:mx-auto md:w-4/5">
         <h1 className="mainH1">{t("AboutUs")}</h1>
 
         <div className="space-y-5 text-xl">
