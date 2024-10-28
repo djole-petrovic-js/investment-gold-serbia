@@ -32,7 +32,7 @@ export async function getEurToRsdConversionRate() : Promise<number> {
     /**
      * NBS doesn't have exactly the best HTML structure for scraping.
      */
-    cheerio('#boxCourse > div.boxContent > table:nth-child(1) > tbody > tr > td:nth-child(1)').text()
+    cheerio('#curFullTable > tbody > tr:nth-child(1) > td:nth-child(6)').text()
   );
 
   return rsdEurConvertionRate;
