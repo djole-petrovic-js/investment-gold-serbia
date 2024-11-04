@@ -27,6 +27,15 @@ import Timer from "@/lib/utils/timer"
  * Revalidate static pages.
  */
 export async function GET() {
+  /**
+   * [Error: UNABLE_TO_VERIFY_LEAF_SIGNATURE]
+   * 
+   * This is a workaround for the error above. A better solution should be found.
+   * 
+   * https://stackoverflow.com/questions/20082893/unable-to-verify-leaf-signature
+   */
+  process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
   const timer = new Timer()
 
   timer.start()
