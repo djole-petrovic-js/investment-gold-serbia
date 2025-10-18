@@ -39,8 +39,8 @@ export default class TavexDistributer extends Distributer {
     priceBuySelector: string
   } {
     return {
-      priceSellSelector: `.h-container a[data-id][href*="${identifier}"] .product__price--single .product__price-value`,
-      priceBuySelector: `.h-container a[data-id][href*="${identifier}"] .product__price--buy .price-amount-whole`,
+      priceSellSelector: `a.product__overlay-link[href*="${identifier}"]`,
+      priceBuySelector: `a.product__overlay-link[href*="${identifier}"]`,
     }
   }
   /**
@@ -57,16 +57,20 @@ export default class TavexDistributer extends Distributer {
           product.identifier,
         )
 
+        const priceSellSelectorWrapper = cheerio(priceSellSelector).next().next().find('.product__price--single .product__price-value');
+        const priceBuySelectorWrapper = cheerio(priceBuySelector).next().next().find('.product__price--buy .price-amount-whole');
+
         const priceSell: number = Number(
-          cheerio(priceSellSelector).text().trim().replace("din", "").replace(" ", ""),
+          priceSellSelectorWrapper.text().trim().replace("din", "").replace(" ", ""),
         )
         const priceBuy: number = Number(
-          cheerio(priceBuySelector).text().trim().replace("din", "").replace(" ", ""),
+          priceBuySelectorWrapper.text().trim().replace("din", "").replace(" ", ""),
         )
-
-        const urlSell = cheerio(priceSellSelector).closest("a.product").attr("href")
-
-        const urlBuy = cheerio(priceSellSelector).closest("a.product").attr("href")
+        /**
+         * Buy and Sell pages are the same
+         */
+        const urlSell = priceSellSelectorWrapper.closest("a.product").attr("href")
+        const urlBuy = urlSell;
 
         const priceSellPremium = calculatePremium(
           priceSell,
