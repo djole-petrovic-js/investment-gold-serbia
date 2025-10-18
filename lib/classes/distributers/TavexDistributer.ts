@@ -66,11 +66,9 @@ export default class TavexDistributer extends Distributer {
         const priceBuy: number = Number(
           priceBuySelectorWrapper.text().trim().replace("din", "").replace(" ", ""),
         )
-        /**
-         * Buy and Sell pages are the same
-         */
-        const urlSell = priceSellSelectorWrapper.closest("a.product").attr("href")
-        const urlBuy = urlSell;
+
+        const urlSell = cheerio(priceSellSelector).attr('href')
+        const urlBuy = cheerio(priceBuySelector).attr('href');
 
         const priceSellPremium = calculatePremium(
           priceSell,
